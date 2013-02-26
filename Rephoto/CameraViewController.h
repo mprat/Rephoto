@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface CameraViewController : UIViewController
+@interface CameraViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate> {
+}
+
+@property (strong, nonatomic) AVCaptureSession *captureSession;
+
+-(void)startCapture;
 
 @end

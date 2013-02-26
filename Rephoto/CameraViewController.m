@@ -14,6 +14,8 @@
 
 @implementation CameraViewController
 
+@synthesize captureSession = _captureSession;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -24,6 +26,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) startCapture{
+    [self.captureSession startRunning];
+}
+
+-(AVCaptureSession *)captureSession{
+    
 }
 
 @end
