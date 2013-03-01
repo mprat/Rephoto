@@ -11,13 +11,17 @@
 		984EE9BE16DD2D7F00BD24D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BD16DD2D7F00BD24D5 /* Foundation.framework */; };
 		984EE9C016DD2D7F00BD24D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BF16DD2D7F00BD24D5 /* CoreGraphics.framework */; };
 		984EE9C616DD2D7F00BD24D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9C416DD2D7F00BD24D5 /* InfoPlist.strings */; };
-		984EE9C816DD2D7F00BD24D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9C716DD2D7F00BD24D5 /* main.m */; };
-		984EE9CC16DD2D7F00BD24D5 /* CameraAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.m */; };
+		984EE9C816DD2D7F00BD24D5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9C716DD2D7F00BD24D5 /* main.mm */; };
+		984EE9CC16DD2D7F00BD24D5 /* CameraAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.mm */; };
 		984EE9CE16DD2D7F00BD24D5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9CD16DD2D7F00BD24D5 /* Default.png */; };
 		984EE9D016DD2D7F00BD24D5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9CF16DD2D7F00BD24D5 /* Default@2x.png */; };
 		984EE9D216DD2D7F00BD24D5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9D116DD2D7F00BD24D5 /* Default-568h@2x.png */; };
 		984EE9D516DD2D7F00BD24D5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9D316DD2D7F00BD24D5 /* MainStoryboard.storyboard */; };
-		984EE9D816DD2D7F00BD24D5 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9D716DD2D7F00BD24D5 /* CameraViewController.m */; };
+		984EE9D816DD2D7F00BD24D5 /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */; };
+		9891EA6116E0118700834E74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6016E0118700834E74 /* AVFoundation.framework */; };
+		9891EA6316E0126800834E74 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6216E0126800834E74 /* CoreMedia.framework */; };
+		9891EA6516E0126F00834E74 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6416E0126F00834E74 /* CoreVideo.framework */; };
+		9891EA6716E0172A00834E74 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6616E0172A00834E74 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,16 +31,20 @@
 		984EE9BF16DD2D7F00BD24D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		984EE9C316DD2D7F00BD24D5 /* Rephoto-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rephoto-Info.plist"; sourceTree = "<group>"; };
 		984EE9C516DD2D7F00BD24D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		984EE9C716DD2D7F00BD24D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		984EE9C716DD2D7F00BD24D5 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		984EE9C916DD2D7F00BD24D5 /* Rephoto-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rephoto-Prefix.pch"; sourceTree = "<group>"; };
 		984EE9CA16DD2D7F00BD24D5 /* CameraAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraAppDelegate.h; sourceTree = "<group>"; };
-		984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraAppDelegate.m; sourceTree = "<group>"; };
+		984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraAppDelegate.mm; sourceTree = "<group>"; };
 		984EE9CD16DD2D7F00BD24D5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		984EE9CF16DD2D7F00BD24D5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		984EE9D116DD2D7F00BD24D5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		984EE9D416DD2D7F00BD24D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		984EE9D616DD2D7F00BD24D5 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		984EE9D716DD2D7F00BD24D5 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraViewController.mm; sourceTree = "<group>"; };
+		9891EA6016E0118700834E74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9891EA6216E0126800834E74 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		9891EA6416E0126F00834E74 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		9891EA6616E0172A00834E74 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +52,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9891EA6716E0172A00834E74 /* CoreMotion.framework in Frameworks */,
+				9891EA6516E0126F00834E74 /* CoreVideo.framework in Frameworks */,
+				9891EA6316E0126800834E74 /* CoreMedia.framework in Frameworks */,
+				9891EA6116E0118700834E74 /* AVFoundation.framework in Frameworks */,
 				984EE9BC16DD2D7F00BD24D5 /* UIKit.framework in Frameworks */,
 				984EE9BE16DD2D7F00BD24D5 /* Foundation.framework in Frameworks */,
 				984EE9C016DD2D7F00BD24D5 /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +85,10 @@
 		984EE9BA16DD2D7F00BD24D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9891EA6616E0172A00834E74 /* CoreMotion.framework */,
+				9891EA6416E0126F00834E74 /* CoreVideo.framework */,
+				9891EA6216E0126800834E74 /* CoreMedia.framework */,
+				9891EA6016E0118700834E74 /* AVFoundation.framework */,
 				984EE9BB16DD2D7F00BD24D5 /* UIKit.framework */,
 				984EE9BD16DD2D7F00BD24D5 /* Foundation.framework */,
 				984EE9BF16DD2D7F00BD24D5 /* CoreGraphics.framework */,
@@ -84,10 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				984EE9CA16DD2D7F00BD24D5 /* CameraAppDelegate.h */,
-				984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.m */,
+				984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.mm */,
 				984EE9D316DD2D7F00BD24D5 /* MainStoryboard.storyboard */,
 				984EE9D616DD2D7F00BD24D5 /* CameraViewController.h */,
-				984EE9D716DD2D7F00BD24D5 /* CameraViewController.m */,
+				984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */,
 				984EE9C216DD2D7F00BD24D5 /* Supporting Files */,
 			);
 			path = Rephoto;
@@ -98,7 +114,7 @@
 			children = (
 				984EE9C316DD2D7F00BD24D5 /* Rephoto-Info.plist */,
 				984EE9C416DD2D7F00BD24D5 /* InfoPlist.strings */,
-				984EE9C716DD2D7F00BD24D5 /* main.m */,
+				984EE9C716DD2D7F00BD24D5 /* main.mm */,
 				984EE9C916DD2D7F00BD24D5 /* Rephoto-Prefix.pch */,
 				984EE9CD16DD2D7F00BD24D5 /* Default.png */,
 				984EE9CF16DD2D7F00BD24D5 /* Default@2x.png */,
@@ -174,9 +190,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				984EE9C816DD2D7F00BD24D5 /* main.m in Sources */,
-				984EE9CC16DD2D7F00BD24D5 /* CameraAppDelegate.m in Sources */,
-				984EE9D816DD2D7F00BD24D5 /* CameraViewController.m in Sources */,
+				984EE9C816DD2D7F00BD24D5 /* main.mm in Sources */,
+				984EE9CC16DD2D7F00BD24D5 /* CameraAppDelegate.mm in Sources */,
+				984EE9D816DD2D7F00BD24D5 /* CameraViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +311,7 @@
 				984EE9DD16DD2D7F00BD24D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

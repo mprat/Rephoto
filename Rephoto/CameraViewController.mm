@@ -8,18 +8,39 @@
 
 #import "CameraViewController.h"
 
-@interface CameraViewController ()
-
+@interface CameraViewController (){
+    BOOL accelerometer_available;
+    BOOL device_motion_available;
+}
 @end
 
 @implementation CameraViewController
 
 @synthesize captureSession = _captureSession;
+@synthesize motionManager = _motionManager;
+@synthesize previewLayer = _previewLayer;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    //guarantee that init camera will get called before camera is started
+	[self initCamera];
+	
+    //initialize the getting of accelerometer data
+	self.motionManager = [[CMMotionManager alloc] init];
+	
+    //is there an accelerometer?
+	if (self.motionManager.accelerometerAvailable) {
+		accelerometer_available = true;
+		[self.motionManager startAccelerometerUpdates];
+	}
+	
+    //can i get device motion?
+	if (self.motionManager.deviceMotionAvailable) {
+		device_motion_available = true;
+		[self.motionManager startDeviceMotionUpdates];
+	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -28,9 +49,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) initCamera{
-    _captureSession = [[AVCaptureSession alloc] init];
-    
+-(void) initCamera{    
     NSArray *devices = [AVCaptureDevice devices];
     AVCaptureDevice *device = nil;
     NSError *outError = nil;
@@ -72,9 +91,13 @@
     
 	[output setVideoSettings:videoSettings];
     
-    //TODO: figure out about camera in a different thread?
-//    [output setSampleBufferDelegate:self queue:dispatch_get_current_queue()];
+    /*We create a serial queue to handle the processing of our frames*/
+    dispatch_queue_t queue;
+    queue = dispatch_queue_create("cameraQueue", NULL);
+    [output setSampleBufferDelegate:self queue:queue];
+//    dispatch_release(queue);
     
+    self.captureSession = [[AVCaptureSession alloc] init];
     [self.captureSession addInput:devInput];
     [self.captureSession addOutput:output];
     
@@ -109,6 +132,12 @@
          object:nil];
     }
     
+    //set up the preview layer
+    self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession: self.captureSession];
+    [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [self.view.layer addSublayer: self.previewLayer];
+    
+    //starts camera automatically
     [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(startCamera) userInfo:nil repeats:NO];
 
 }
