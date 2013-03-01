@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		983AD84916E16349002870E8 /* PointCloudProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 983AD84716E16349002870E8 /* PointCloudProcessing.cpp */; };
+		983AD84C16E1689F002870E8 /* GraphicsSingleton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */; };
 		984EE9BC16DD2D7F00BD24D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BB16DD2D7F00BD24D5 /* UIKit.framework */; };
 		984EE9BE16DD2D7F00BD24D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BD16DD2D7F00BD24D5 /* Foundation.framework */; };
 		984EE9C016DD2D7F00BD24D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BF16DD2D7F00BD24D5 /* CoreGraphics.framework */; };
@@ -25,6 +27,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		983AD84716E16349002870E8 /* PointCloudProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointCloudProcessing.cpp; sourceTree = "<group>"; };
+		983AD84816E16349002870E8 /* PointCloudProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointCloudProcessing.h; sourceTree = "<group>"; };
+		983AD84A16E1689F002870E8 /* GraphicsSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsSingleton.h; sourceTree = "<group>"; };
+		983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GraphicsSingleton.mm; sourceTree = "<group>"; };
+		983AD86C16E16BB1002870E8 /* PointCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointCloud.h; path = ../../libpointcloud_iOS/PointCloud.h; sourceTree = "<group>"; };
 		984EE9B716DD2D7F00BD24D5 /* Rephoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rephoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		984EE9BB16DD2D7F00BD24D5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		984EE9BD16DD2D7F00BD24D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -99,6 +106,11 @@
 		984EE9C116DD2D7F00BD24D5 /* Rephoto */ = {
 			isa = PBXGroup;
 			children = (
+				983AD86C16E16BB1002870E8 /* PointCloud.h */,
+				983AD84A16E1689F002870E8 /* GraphicsSingleton.h */,
+				983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */,
+				983AD84716E16349002870E8 /* PointCloudProcessing.cpp */,
+				983AD84816E16349002870E8 /* PointCloudProcessing.h */,
 				984EE9CA16DD2D7F00BD24D5 /* CameraAppDelegate.h */,
 				984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.mm */,
 				984EE9D316DD2D7F00BD24D5 /* MainStoryboard.storyboard */,
@@ -193,6 +205,8 @@
 				984EE9C816DD2D7F00BD24D5 /* main.mm in Sources */,
 				984EE9CC16DD2D7F00BD24D5 /* CameraAppDelegate.mm in Sources */,
 				984EE9D816DD2D7F00BD24D5 /* CameraViewController.mm in Sources */,
+				983AD84916E16349002870E8 /* PointCloudProcessing.cpp in Sources */,
+				983AD84C16E1689F002870E8 /* GraphicsSingleton.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +290,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rephoto/Rephoto-Prefix.pch";
 				INFOPLIST_FILE = "Rephoto/Rephoto-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libpointcloud_iOS\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -287,6 +305,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rephoto/Rephoto-Prefix.pch";
 				INFOPLIST_FILE = "Rephoto/Rephoto-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libpointcloud_iOS\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

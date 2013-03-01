@@ -115,30 +115,13 @@
     
     [self.captureSession setSessionPreset: AVCaptureSessionPresetMedium];
     
-    NSArray *events = [NSArray arrayWithObjects:
-                       AVCaptureSessionRuntimeErrorNotification,
-                       AVCaptureSessionErrorKey,
-                       AVCaptureSessionDidStartRunningNotification,
-                       AVCaptureSessionDidStopRunningNotification,
-                       AVCaptureSessionWasInterruptedNotification,
-                       AVCaptureSessionInterruptionEndedNotification,
-                       nil];
-    
-    for (id e in events) {
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self
-         selector:@selector(eventHandler:)
-         name:e
-         object:nil];
-    }
-    
     //set up the preview layer
     self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession: self.captureSession];
     [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     [self.view.layer addSublayer: self.previewLayer];
     
     //starts camera automatically
-    [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(startCamera) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(startCapture) userInfo:nil repeats:NO];
 
 }
 
