@@ -120,4 +120,31 @@
     [self.captureSession startRunning];
 }
 
+// method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate
+-(void) captureOutput:(AVCaptureOutput *)captureOutput didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
+    
+    if (sampleBuffer == nil) {
+        NSLog(@"Received nil sampleBuffer from %@ with connection %@",captureOutput,connection);
+        return;
+    }
+	
+    CFRetain(sampleBuffer);
+    
+    NSData *data = [[NSData alloc] initWithBytesNoCopy:sampleBuffer length:4 freeWhenDone:NO];
+    
+	// Make sure that we handle the camera data in the main thread
+	if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(captureOutputHelper:) withObject:data waitUntilDone:true];
+    } else {
+        [self captureOutputHelper: data];
+    }
+	
+    CFRelease(sampleBuffer);
+}
+
+// do pixel processing here (on the main thread)
+-(void) captureOutputHelper:(id)pixelData{
+    // create pointcloud instance here
+}
+
 @end
