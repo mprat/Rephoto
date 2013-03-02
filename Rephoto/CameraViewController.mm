@@ -11,6 +11,9 @@
 @interface CameraViewController (){
     BOOL accelerometer_available;
     BOOL device_motion_available;
+    
+    PointCloudProcessing *pointCloudProcessing;
+    CVPixelBufferRef pixelBuffer;
 }
 @end
 
@@ -19,6 +22,7 @@
 @synthesize captureSession = _captureSession;
 @synthesize motionManager = _motionManager;
 @synthesize previewLayer = _previewLayer;
+@synthesize timestamp = _timestamp;
 
 - (void)viewDidLoad
 {
@@ -144,7 +148,40 @@
 
 // do pixel processing here (on the main thread)
 -(void) captureOutputHelper:(id)pixelData{
-    // create pointcloud instance here
+    NSData * data = (NSData *) pixelData;
+    
+    CMSampleBufferRef sampleBuffer = (CMSampleBufferRef) [data bytes];
+    
+    self.timestamp = CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sampleBuffer));
+    
+    CVImageBufferRef imgBuff = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CFRetain(imgBuff);
+    CVPixelBufferRef pixBuff = imgBuff;
+    
+    int w = CVPixelBufferGetWidth(pixBuff);
+    int h = CVPixelBufferGetHeight(pixBuff);
+	
+	
+	// Create the application once we get the first camera frame
+	if (!pointCloudProcessing) {
+		NSString *resourcePath = [NSString stringWithFormat:@"%@/", [[NSBundle mainBundle] resourcePath]];
+        
+		pointCloudProcessing = new PointCloudProcessing(self.view.bounds.size.width,
+											self.view.bounds.size.height,
+											w,
+											h,
+											POINTCLOUD_BGRA_8888,
+											[resourcePath cStringUsingEncoding:[NSString defaultCStringEncoding]]);
+	}
+    
+	pixelBuffer = pixBuff;
+	
+    //redraw the view? probably not yet
+//    [glView drawView];
+	
+    pixelBuffer = nil;
+	
+    CFRelease(imgBuff);
 }
 
 @end
