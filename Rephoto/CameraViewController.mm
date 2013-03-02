@@ -60,16 +60,6 @@
 			device = d;
 		}
     }
-	
-	if (device == nil) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No camera found"
-														message:@"You need a device with a back-facing camera to run this app."
-													   delegate:self
-											  cancelButtonTitle:@"Quit"
-											  otherButtonTitles:nil];
-		[alert show];
-		return;
-	}
     
     AVCaptureDeviceInput *devInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&outError];
     
@@ -91,33 +81,34 @@
     
 	[output setVideoSettings:videoSettings];
     
-    /*We create a serial queue to handle the processing of our frames*/
-    dispatch_queue_t queue;
-    queue = dispatch_queue_create("cameraQueue", NULL);
-    [output setSampleBufferDelegate:self queue:queue];
-//    dispatch_release(queue);
+//    /*We create a serial queue to handle the processing of our frames*/
+//    dispatch_queue_t queue;
+//    queue = dispatch_queue_create("cameraQueue", NULL);
+//    [output setSampleBufferDelegate:self queue:queue];
+////    dispatch_release(queue);
     
     self.captureSession = [[AVCaptureSession alloc] init];
     [self.captureSession addInput:devInput];
     [self.captureSession addOutput:output];
     
-    double max_fps = 30;
-    
-    for(int i = 0; i < [[output connections] count]; i++) {
-        AVCaptureConnection *conn = [[output connections] objectAtIndex:i];
-        if (conn.supportsVideoMinFrameDuration) {
-            conn.videoMinFrameDuration = CMTimeMake(1, max_fps);
-        }
-        if (conn.supportsVideoMaxFrameDuration) {
-            conn.videoMaxFrameDuration = CMTimeMake(1, max_fps);
-        }
-    }
+    // what is this for, actually?
+//    double max_fps = 30;
+//    for(int i = 0; i < [[output connections] count]; i++) {
+//        AVCaptureConnection *conn = [[output connections] objectAtIndex:i];
+//        if (conn.supportsVideoMinFrameDuration) {
+//            conn.videoMinFrameDuration = CMTimeMake(1, max_fps);
+//        }
+//        if (conn.supportsVideoMaxFrameDuration) {
+//            conn.videoMaxFrameDuration = CMTimeMake(1, max_fps);
+//        }
+//    }
     
     [self.captureSession setSessionPreset: AVCaptureSessionPresetMedium];
     
     //set up the preview layer
     self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession: self.captureSession];
     [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    self.previewLayer.frame = self.view.frame;
     [self.view.layer addSublayer: self.previewLayer];
     
     //starts camera automatically

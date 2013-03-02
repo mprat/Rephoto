@@ -10,8 +10,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreMedia/CoreMedia.h>
 #import <CoreMotion/CoreMotion.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface CameraViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate, UIAlertViewDelegate> {
+@interface CameraViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate> {
 }
 
 @property (strong, nonatomic) AVCaptureSession *captureSession;
