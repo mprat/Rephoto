@@ -15,3 +15,20 @@ PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_heig
 					  device,
 					  "f15df684-4a28-4afc-a31c-c4e6fb73969d");
 }
+
+void PointCloudProcessing::on_accelerometer_update(float x, float y, float z, double timestamp){
+    pointcloud_on_accelerometer_update(x, y, z, timestamp);
+}
+
+void PointCloudProcessing::on_device_motion_update(float x, float y, float z, float rot_x, float rot_y, float rot_z, float g_x, float g_y, float g_z, double timestamp){
+    pointcloud_on_device_motion_update(x, y, z, rot_x, rot_y, rot_z, g_x, g_y, g_x, timestamp);
+}
+
+//method for starting the point-cloud process of localizing to an image
+bool PointCloudProcessing::on_start_match_to_image(double x, double y){
+    return true;
+}
+
+void PointCloudProcessing::render_point_cloud(){
+    
+}

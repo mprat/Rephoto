@@ -28,6 +28,9 @@
 {
     [super viewDidLoad];
     
+    accelerometer_available = false;
+    device_motion_available = false;
+    
     //guarantee that init camera will get called before camera is started
 	[self initCamera];
 	
@@ -85,11 +88,11 @@
     
 	[output setVideoSettings:videoSettings];
     
-//    /*We create a serial queue to handle the processing of our frames*/
-//    dispatch_queue_t queue;
-//    queue = dispatch_queue_create("cameraQueue", NULL);
-//    [output setSampleBufferDelegate:self queue:queue];
-////    dispatch_release(queue);
+    /*We create a serial queue to handle the processing of our frames*/
+    dispatch_queue_t queue;
+    queue = dispatch_queue_create("cameraQueue", NULL);
+    [output setSampleBufferDelegate:self queue:queue];
+//    dispatch_release(queue);
     
     self.captureSession = [[AVCaptureSession alloc] init];
     [self.captureSession addInput:devInput];
@@ -125,7 +128,7 @@
 }
 
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate
--(void) captureOutput:(AVCaptureOutput *)captureOutput didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
+-(void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
     
     if (sampleBuffer == nil) {
         NSLog(@"Received nil sampleBuffer from %@ with connection %@",captureOutput,connection);
@@ -175,9 +178,53 @@
 	}
     
 	pixelBuffer = pixBuff;
-	
-    //redraw the view? probably not yet
-//    [glView drawView];
+    
+    //process pixel buffer---
+    CVReturn lockResult = CVPixelBufferLockBaseAddress (pixelBuffer, 0);
+	if(lockResult == kCVReturnSuccess) {
+		if (accelerometer_available) {
+			if (!self.motionManager.accelerometerActive)
+				[self.motionManager startAccelerometerUpdates];
+			
+			CMAccelerometerData *accelerometerData = self.motionManager.accelerometerData;
+			if (accelerometerData) {
+				CMAcceleration acceleration = accelerometerData.acceleration;
+				
+				pointCloudProcessing->on_accelerometer_update(acceleration.y, acceleration.x, acceleration.z, self.timestamp);
+			}
+		}
+		if (device_motion_available) {
+			if (!self.motionManager.deviceMotionActive)
+				[self.motionManager startDeviceMotionUpdates];
+			
+			CMDeviceMotion *deviceMotion = self.motionManager.deviceMotion;
+			if (deviceMotion) {
+				CMAcceleration device_acceleration = deviceMotion.userAcceleration;
+				CMRotationRate device_rotation_rate = deviceMotion.rotationRate;
+                CMAcceleration gravity = deviceMotion.gravity;
+				
+				pointCloudProcessing->on_device_motion_update(device_acceleration.y,
+															   device_acceleration.x,
+															   device_acceleration.z,
+															   device_rotation_rate.y,
+															   device_rotation_rate.x,
+															   device_rotation_rate.z,
+                                                               gravity.y,
+                                                               gravity.x,
+                                                               gravity.z,
+                                                               self.timestamp);
+			}
+		}
+		
+		char* ba = (char*)CVPixelBufferGetBaseAddress(pixelBuffer);
+        
+        //not really sure what this method here is doing?
+//		pointCloudProcessing->render_frame(ba, CVPixelBufferGetDataSize(pixelBuffer), self.timestamp);
+		
+		CVPixelBufferUnlockBaseAddress (pixelBuffer, 0);
+		return;
+	}
+    //----
 	
     pixelBuffer = nil;
 	
