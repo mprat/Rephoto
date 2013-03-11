@@ -35,6 +35,7 @@ bool PointCloudProcessing::on_start_match_to_image(double x, double y){
 
 void PointCloudProcessing::render_point_cloud(){
     pointcloud_state state = pointcloud_get_state();
+    std::cout<<"Rendering point cloud"<<std::endl;
     if (state == POINTCLOUD_INITIALIZING ||
 		state == POINTCLOUD_TRACKING_SLAM_MAP) {
         std::cout<<"initializing or tracking slam map"<<std::endl;

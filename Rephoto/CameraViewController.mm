@@ -31,8 +31,9 @@
     accelerometer_available = false;
     device_motion_available = false;
     
+    //TODO: only init camera when button is pressed
     //guarantee that init camera will get called before camera is started
-	[self initCamera];
+	//[self initCamera];
 	
     //initialize the getting of accelerometer data
 	self.motionManager = [[CMMotionManager alloc] init];
@@ -125,6 +126,10 @@
 
 -(void) startCapture{
     [self.captureSession startRunning];
+}
+
+- (IBAction)SlamInitButtonPressed:(id)sender {
+    [self initCamera];
 }
 
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate

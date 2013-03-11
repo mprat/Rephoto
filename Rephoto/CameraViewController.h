@@ -23,5 +23,6 @@
 @property (nonatomic) Float64 timestamp;
 
 -(void)startCapture;
+- (IBAction)SlamInitButtonPressed:(id)sender;
 
 @end

@@ -12,25 +12,28 @@
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpz-Mj-1Hn" userLabel="start_slam_init_button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1K-i6-gZT">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="76" id="aIe-4W-NQD"/>
-                                    <constraint firstAttribute="width" constant="248" id="rkK-gh-MnP"/>
+                                    <constraint firstAttribute="height" constant="145" id="bP7-FJ-4e9"/>
+                                    <constraint firstAttribute="width" constant="252" id="vQy-o4-K7q"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Start initialization">
+                                <state key="normal" title="Start SLAM init">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="SlamInitButtonPressed:" destination="2" eventType="touchUpInside" id="LDD-R5-3TN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Wpz-Mj-1Hn" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="354" id="SOo-L6-yxo"/>
-                            <constraint firstItem="Wpz-Mj-1Hn" firstAttribute="top" secondItem="5" secondAttribute="top" constant="330" id="zaD-GO-yPF"/>
+                            <constraint firstItem="L1K-i6-gZT" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" type="default" id="KQI-Fh-ffR"/>
+                            <constraint firstItem="L1K-i6-gZT" firstAttribute="top" secondItem="5" secondAttribute="top" constant="357" id="VQI-LF-Emh"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -42,6 +45,9 @@
     <classes>
         <class className="CameraViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CameraViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="SlamInitButtonPressed:"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
