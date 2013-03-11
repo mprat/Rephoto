@@ -15,6 +15,7 @@
 class PointCloudProcessing {
 public:
     PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device);
+    ~PointCloudProcessing();
     
     void on_accelerometer_update(float x, float y, float z, double timestamp);
 	void on_device_motion_update(float x, float y, float z, float rot_x, float rot_y, float rot_z, float g_x, float g_y, float g_z, double timestamp);

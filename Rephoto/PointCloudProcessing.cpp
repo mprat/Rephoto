@@ -16,6 +16,10 @@ PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_heig
 					  "f15df684-4a28-4afc-a31c-c4e6fb73969d");
 }
 
+PointCloudProcessing::~PointCloudProcessing(){
+    pointcloud_destroy();
+}
+
 void PointCloudProcessing::on_accelerometer_update(float x, float y, float z, double timestamp){
     pointcloud_on_accelerometer_update(x, y, z, timestamp);
 }
@@ -30,5 +34,17 @@ bool PointCloudProcessing::on_start_match_to_image(double x, double y){
 }
 
 void PointCloudProcessing::render_point_cloud(){
-    
+    pointcloud_state state = pointcloud_get_state();
+    if (state == POINTCLOUD_INITIALIZING ||
+		state == POINTCLOUD_TRACKING_SLAM_MAP) {
+        std::cout<<"initializing or tracking slam map"<<std::endl;
+        
+        pointcloud_point_cloud* points = pointcloud_get_points();
+		
+        if (points) {
+            std::cout<<"There are points"<<std::endl;
+			
+			pointcloud_destroy_point_cloud(points);
+        }
+    }
 }

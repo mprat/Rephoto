@@ -216,10 +216,9 @@
 			}
 		}
 		
-		char* ba = (char*)CVPixelBufferGetBaseAddress(pixelBuffer);
+//		char* ba = (char*)CVPixelBufferGetBaseAddress(pixelBuffer);
         
-        //not really sure what this method here is doing?
-//		pointCloudProcessing->render_frame(ba, CVPixelBufferGetDataSize(pixelBuffer), self.timestamp);
+		pointCloudProcessing->render_point_cloud(); 
 		
 		CVPixelBufferUnlockBaseAddress (pixelBuffer, 0);
 		return;
