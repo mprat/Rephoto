@@ -20,7 +20,8 @@ public:
     void on_accelerometer_update(float x, float y, float z, double timestamp);
 	void on_device_motion_update(float x, float y, float z, float rot_x, float rot_y, float rot_z, float g_x, float g_y, float g_z, double timestamp);
     
-    bool on_start_match_to_image(double x, double y);
+    void frame_process(char *data, double timestamp);
+    bool start_match_to_image(double x, double y);
     
     void render_point_cloud();
 

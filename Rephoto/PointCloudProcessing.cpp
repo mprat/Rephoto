@@ -29,13 +29,24 @@ void PointCloudProcessing::on_device_motion_update(float x, float y, float z, fl
 }
 
 //method for starting the point-cloud process of localizing to an image
-bool PointCloudProcessing::on_start_match_to_image(double x, double y){
-    return true;
+bool PointCloudProcessing::start_match_to_image(double x, double y){
+    pointcloud_state state = pointcloud_get_state();
+    if (state != POINTCLOUD_LOOKING_FOR_IMAGES && state != POINTCLOUD_TRACKING_IMAGES) {
+		if (pointcloud_get_state() == POINTCLOUD_IDLE) {
+			printf("Start initialization\n");
+			pointcloud_start_slam();
+            return true;
+		} else {
+			printf("Resetting\n");
+			pointcloud_reset();
+		}
+	}
+    return false;
 }
 
 void PointCloudProcessing::render_point_cloud(){
     pointcloud_state state = pointcloud_get_state();
-    std::cout<<"Rendering point cloud"<<std::endl;
+    std::cout<<"Rendering point cloud state = "<<state<<std::endl;
     if (state == POINTCLOUD_INITIALIZING ||
 		state == POINTCLOUD_TRACKING_SLAM_MAP) {
         std::cout<<"initializing or tracking slam map"<<std::endl;
@@ -48,4 +59,9 @@ void PointCloudProcessing::render_point_cloud(){
 			pointcloud_destroy_point_cloud(points);
         }
     }
+}
+
+void PointCloudProcessing::frame_process(char *data, double timestamp){
+    pointcloud_on_camera_frame(data, timestamp);
+    render_point_cloud();
 }
