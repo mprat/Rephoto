@@ -30,6 +30,9 @@
     
     accelerometer_available = false;
     device_motion_available = false;
+    
+    //guarantee that init camera will get called before camera is started
+    [self initCamera];
 	
     //initialize the getting of accelerometer data
 	self.motionManager = [[CMMotionManager alloc] init];
@@ -126,7 +129,7 @@
 
 - (IBAction)SlamInitButtonPressed:(id)sender {
     //guarantee that init camera will get called before camera is started
-    [self initCamera];
+//    [self initCamera];
     
     //TODO: get x, y of click?
     pointCloudProcessing->start_match_to_image(0.0, 0.0);

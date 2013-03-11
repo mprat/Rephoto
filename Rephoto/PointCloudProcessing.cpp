@@ -31,15 +31,16 @@ void PointCloudProcessing::on_device_motion_update(float x, float y, float z, fl
 //method for starting the point-cloud process of localizing to an image
 bool PointCloudProcessing::start_match_to_image(double x, double y){
     pointcloud_state state = pointcloud_get_state();
+    std::cout<<"state = "<<state<<std::endl;
     if (state != POINTCLOUD_LOOKING_FOR_IMAGES && state != POINTCLOUD_TRACKING_IMAGES) {
 		if (pointcloud_get_state() == POINTCLOUD_IDLE) {
 			printf("Start initialization\n");
 			pointcloud_start_slam();
-            return true;
 		} else {
 			printf("Resetting\n");
 			pointcloud_reset();
 		}
+        return true;
 	}
     return false;
 }
