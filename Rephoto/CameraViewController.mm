@@ -134,8 +134,8 @@
     //guarantee that init camera will get called before camera is started
 //    [self initCamera];
     
-    pointCloudProcessing->start_match_to_image();
-//    pointCloudProcessing->start_slam();
+//    pointCloudProcessing->start_match_to_image();
+    pointCloudProcessing->start_slam();
 }
 
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate
