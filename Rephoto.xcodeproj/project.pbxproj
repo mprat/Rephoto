@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9806059516F92100005CDD83 /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 9806059416F92100005CDD83 /* Shader.fsh */; };
+		9806059816F9210D005CDD83 /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 9806059716F9210D005CDD83 /* Shader.vsh */; };
+		9806059916F922E5005CDD83 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 9806059416F92100005CDD83 /* Shader.fsh */; };
+		9806059A16F922E5005CDD83 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 9806059716F9210D005CDD83 /* Shader.vsh */; };
 		982141E416E54E2D00F7388F /* libpointcloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 982141E316E54E2D00F7388F /* libpointcloud.a */; };
 		983AD84916E16349002870E8 /* PointCloudProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 983AD84716E16349002870E8 /* PointCloudProcessing.cpp */; };
 		983AD84C16E1689F002870E8 /* GraphicsSingleton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */; };
@@ -33,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9806059416F92100005CDD83 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		9806059716F9210D005CDD83 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		982141E316E54E2D00F7388F /* libpointcloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpointcloud.a; path = ../libpointcloud_iOS/libpointcloud.a; sourceTree = "<group>"; };
 		983AD84716E16349002870E8 /* PointCloudProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointCloudProcessing.cpp; sourceTree = "<group>"; };
 		983AD84816E16349002870E8 /* PointCloudProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointCloudProcessing.h; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 		984EE9C116DD2D7F00BD24D5 /* Rephoto */ = {
 			isa = PBXGroup;
 			children = (
+				9806059416F92100005CDD83 /* Shader.fsh */,
+				9806059716F9210D005CDD83 /* Shader.vsh */,
 				983AD84A16E1689F002870E8 /* GraphicsSingleton.h */,
 				983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */,
 				983AD84716E16349002870E8 /* PointCloudProcessing.cpp */,
@@ -217,6 +225,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9806059916F922E5005CDD83 /* Shader.fsh in Resources */,
+				9806059A16F922E5005CDD83 /* Shader.vsh in Resources */,
 				984EE9C616DD2D7F00BD24D5 /* InfoPlist.strings in Resources */,
 				984EE9CE16DD2D7F00BD24D5 /* Default.png in Resources */,
 				984EE9D016DD2D7F00BD24D5 /* Default@2x.png in Resources */,
@@ -239,6 +249,8 @@
 				984EE9D816DD2D7F00BD24D5 /* CameraViewController.mm in Sources */,
 				983AD84916E16349002870E8 /* PointCloudProcessing.cpp in Sources */,
 				983AD84C16E1689F002870E8 /* GraphicsSingleton.mm in Sources */,
+				9806059516F92100005CDD83 /* Shader.fsh in Sources */,
+				9806059816F9210D005CDD83 /* Shader.vsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

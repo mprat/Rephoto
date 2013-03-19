@@ -7,20 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreMedia/CoreMedia.h>
 #import <CoreMotion/CoreMotion.h>
 #import <QuartzCore/QuartzCore.h>
 
 #import "PointCloudProcessing.h"
+#import "GraphicsSingleton.h"
 
 @interface CameraViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate> {
 }
 
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
+@property (strong, nonatomic) CALayer *pointLayer;
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (nonatomic) Float64 timestamp;
+@property (strong, nonatomic) EAGLContext *context;
 
 -(void)startCapture;
 - (IBAction)SlamInitButtonPressed:(id)sender;

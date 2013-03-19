@@ -14,6 +14,7 @@
     
     PointCloudProcessing *pointCloudProcessing;
     CVPixelBufferRef pixelBuffer;
+    GraphicsSingleton *graphicsSing;
 }
 @end
 
@@ -22,7 +23,9 @@
 @synthesize captureSession = _captureSession;
 @synthesize motionManager = _motionManager;
 @synthesize previewLayer = _previewLayer;
+@synthesize pointLayer = _pointLayer;
 @synthesize timestamp = _timestamp;
+@synthesize context = _context;
 
 - (void)viewDidLoad
 {
@@ -48,6 +51,15 @@
 		device_motion_available = true;
 		[self.motionManager startDeviceMotionUpdates];
 	}
+    
+    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    
+    if (!self.context) {
+        NSLog(@"Failed to create ES context");
+    }
+    
+    graphicsSing = [GraphicsSingleton sharedInstance];
+    [graphicsSing setupGLwithContext:self.context];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,13 +125,15 @@
     [self.captureSession setSessionPreset: AVCaptureSessionPresetMedium];
     
     //set up the preview layer
-//    self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession: self.captureSession];
     self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
     [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     self.previewLayer.frame = self.view.bounds;
     //put preview layer on the bottom
     [self.view.layer insertSublayer:self.previewLayer atIndex:0];
-//    [self.view.layer addSublayer:self.previewLayer];
+    //potentially add a custom pointLayer
+    self.pointLayer = [CALayer layer];
+    self.pointLayer.frame = self.view.bounds;
+    [self.view.layer insertSublayer:self.pointLayer atIndex:1];
     
     //starts camera automatically
     [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(startCapture) userInfo:nil repeats:NO];
