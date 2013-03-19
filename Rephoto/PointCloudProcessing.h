@@ -14,14 +14,15 @@
 
 class PointCloudProcessing {
 public:
-    PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device);
+    PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device, const char* resource_path);
     ~PointCloudProcessing();
     
     void on_accelerometer_update(float x, float y, float z, double timestamp);
 	void on_device_motion_update(float x, float y, float z, float rot_x, float rot_y, float rot_z, float g_x, float g_y, float g_z, double timestamp);
     
     void frame_process(char *data, double timestamp);
-    bool start_match_to_image(double x, double y);
+    bool start_match_to_image();
+    bool start_slam();
     
     void render_point_cloud();
 

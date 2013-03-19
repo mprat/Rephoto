@@ -134,8 +134,8 @@
     //guarantee that init camera will get called before camera is started
 //    [self initCamera];
     
-    //TODO: get x, y of click?
-    pointCloudProcessing->start_match_to_image(0.0, 0.0);
+    pointCloudProcessing->start_match_to_image();
+//    pointCloudProcessing->start_slam();
 }
 
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate
@@ -185,6 +185,7 @@
 											w,
 											h,
 											POINTCLOUD_BGRA_8888,
+                                            machineName(),
 											[resourcePath cStringUsingEncoding:[NSString defaultCStringEncoding]]);
 	}
     
@@ -237,6 +238,18 @@
     pixelBuffer = nil;
 	
     CFRelease(imgBuff);
+}
+
+#import <sys/utsname.h>
+
+struct utsname systemInfo;
+
+const char*
+machineName()
+{
+    uname(&systemInfo);
+	
+    return systemInfo.machine;
 }
 
 @end

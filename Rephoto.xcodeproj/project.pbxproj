@@ -22,6 +22,8 @@
 		984EE9D216DD2D7F00BD24D5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9D116DD2D7F00BD24D5 /* Default-568h@2x.png */; };
 		984EE9D516DD2D7F00BD24D5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9D316DD2D7F00BD24D5 /* MainStoryboard.storyboard */; };
 		984EE9D816DD2D7F00BD24D5 /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */; };
+		9890D57016F8D8EB00EAC19E /* image_target_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9890D56E16F8D8EB00EAC19E /* image_target_2.jpg */; };
+		9890D57116F8D8EB00EAC19E /* image_target_2.model in Resources */ = {isa = PBXBuildFile; fileRef = 9890D56F16F8D8EB00EAC19E /* image_target_2.model */; };
 		9891EA6116E0118700834E74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6016E0118700834E74 /* AVFoundation.framework */; };
 		9891EA6316E0126800834E74 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6216E0126800834E74 /* CoreMedia.framework */; };
 		9891EA6516E0126F00834E74 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6416E0126F00834E74 /* CoreVideo.framework */; };
@@ -54,6 +56,8 @@
 		984EE9D416DD2D7F00BD24D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		984EE9D616DD2D7F00BD24D5 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraViewController.mm; sourceTree = "<group>"; };
+		9890D56E16F8D8EB00EAC19E /* image_target_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_target_2.jpg; sourceTree = "<group>"; };
+		9890D56F16F8D8EB00EAC19E /* image_target_2.model */ = {isa = PBXFileReference; lastKnownFileType = file; path = image_target_2.model; sourceTree = "<group>"; };
 		9891EA6016E0118700834E74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9891EA6216E0126800834E74 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9891EA6416E0126F00834E74 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -87,6 +91,7 @@
 		984EE9AC16DD2D7F00BD24D5 = {
 			isa = PBXGroup;
 			children = (
+				9890D56D16F8D8CF00EAC19E /* Resources */,
 				982141E316E54E2D00F7388F /* libpointcloud.a */,
 				983AD86C16E16BB1002870E8 /* PointCloud.h */,
 				984EE9C116DD2D7F00BD24D5 /* Rephoto */,
@@ -151,6 +156,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9890D56D16F8D8CF00EAC19E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9890D56E16F8D8EB00EAC19E /* image_target_2.jpg */,
+				9890D56F16F8D8EB00EAC19E /* image_target_2.model */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,6 +222,8 @@
 				984EE9D016DD2D7F00BD24D5 /* Default@2x.png in Resources */,
 				984EE9D216DD2D7F00BD24D5 /* Default-568h@2x.png in Resources */,
 				984EE9D516DD2D7F00BD24D5 /* MainStoryboard.storyboard in Resources */,
+				9890D57016F8D8EB00EAC19E /* image_target_2.jpg in Resources */,
+				9890D57116F8D8EB00EAC19E /* image_target_2.model in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
