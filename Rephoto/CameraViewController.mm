@@ -113,10 +113,13 @@
     [self.captureSession setSessionPreset: AVCaptureSessionPresetMedium];
     
     //set up the preview layer
-    self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession: self.captureSession];
+//    self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession: self.captureSession];
+    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
     [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    self.previewLayer.frame = self.view.frame;
-    [self.view.layer addSublayer: self.previewLayer];
+    self.previewLayer.frame = self.view.bounds;
+    //put preview layer on the bottom
+    [self.view.layer insertSublayer:self.previewLayer atIndex:0];
+//    [self.view.layer addSublayer:self.previewLayer];
     
     //starts camera automatically
     [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(startCapture) userInfo:nil repeats:NO];
