@@ -9,6 +9,11 @@
 #include "PointCloudProcessing.h"
 #include <algorithm>
 
+//attribute index
+enum {
+    ATTRIB_POINTPOS
+};
+
 PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device, const char* resource_path){
     pointcloud_create(viewport_width, viewport_height,
 					  video_width, video_height,
@@ -75,7 +80,7 @@ void PointCloudProcessing::render_point_cloud(){
         if (points) {			
             //TODO: add points to the buffer (_vertexBuffer in the graphicsSingleton...)?
             glBufferData(GL_ARRAY_BUFFER, 3*(std::min(5012, (int)points->size)), points->points, GL_DYNAMIC_DRAW);
-            
+            glEnableVertexAttribArray(ATTRIB_POINTPOS);
             glDrawArrays(GL_POINTS, 0, points->size);
             
 			pointcloud_destroy_point_cloud(points);
