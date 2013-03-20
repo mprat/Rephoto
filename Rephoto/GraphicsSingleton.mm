@@ -7,6 +7,18 @@
 //
 
 #import "GraphicsSingleton.h"
+#define BUFFER_OFFSET(i) ((char *)NULL + (i))
+
+//attribute index
+enum {
+    ATTRIB_POINTPOS
+};
+
+@interface GraphicsSingleton(){
+    GLuint _vertexBuffer;
+}
+
+@end
 
 @implementation GraphicsSingleton
 
@@ -29,6 +41,16 @@
     [EAGLContext setCurrentContext:context];
     
     [self loadShaders];
+    
+    glGenBuffers(1, &_vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
+    //initialize the size of the buffer
+    glBufferData(GL_ARRAY_BUFFER, 3*sizeof(GLfloat)*5012, NULL, GL_DYNAMIC_DRAW);
+    
+    //enable attribute locations
+    glVertexAttribPointer(ATTRIB_POINTPOS, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), BUFFER_OFFSET(0));
+    glEnableVertexAttribArray(ATTRIB_POINTPOS);
+//    glBindVertexArrayOES(0);
 }
 
 - (BOOL)loadShaders
@@ -61,8 +83,7 @@
     
     // Bind attribute locations.
     // This needs to be done prior to linking.
-//    glBindAttribLocation(_program, ATTRIB_VERTEX, "position");
-//    glBindAttribLocation(_program, ATTRIB_TEXTURE, "texcoord");
+    glBindAttribLocation(_program, ATTRIB_POINTPOS, "position");
     
     // Link program.
     if (![self linkProgram:_program]) {

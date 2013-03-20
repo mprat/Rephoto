@@ -14,6 +14,7 @@
 
 @property (nonatomic) GLuint program;
 
+
 +(id) sharedInstance;
 -(void) setupGLwithContext:(EAGLContext *)context;
 
