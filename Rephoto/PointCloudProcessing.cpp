@@ -14,6 +14,13 @@ enum {
     ATTRIB_POINTPOS
 };
 
+//uniform enums
+enum {
+    UNIFORM_MODELVIEWPROJECTION,
+    NUM_UNIFORMS
+};
+GLint uniforms[NUM_UNIFORMS];
+
 PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device, const char* resource_path){
     pointcloud_create(viewport_width, viewport_height,
 					  video_width, video_height,
@@ -26,7 +33,6 @@ PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_heig
     std::string image_target_2_path = resource_path + std::string("image_target_2.model");
     
     pointcloud_add_image_target("image_2", image_target_2_path.c_str(), 0.3, -1);
-
 }
 
 PointCloudProcessing::~PointCloudProcessing(){
@@ -78,6 +84,11 @@ void PointCloudProcessing::render_point_cloud(){
         pointcloud_point_cloud* points = pointcloud_get_points();
 		
         if (points) {
+            //model view projection matrix
+            Matrix4x4 mvp = Matrix4x4(projection_matrix.data) * Matrix4x4(camera_matrix.data);
+//            mvp.print();
+            glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION], 1, 0, (GLfloat *)((float*)mvp));
+            
 //            std::cout<<"points size = "<<points->size<<std::endl;
             //TODO: move these to the singleton?
             glEnable(GL_DEPTH_TEST);
@@ -99,20 +110,15 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
     pointcloud_on_camera_frame(data, timestamp);
     
     camera_matrix = pointcloud_get_camera_matrix();
-	
-//    std::cout<<camera_matrix.data[0]<<" "<<camera_matrix.data[1]<<" "<<camera_matrix.data[2]<<" "<<camera_matrix.data[3]<<std::endl;
-//    std::cout<<camera_matrix.data[4]<<" "<<camera_matrix.data[5]<<" "<<camera_matrix.data[6]<<" "<<camera_matrix.data[7]<<std::endl;
-//    std::cout<<camera_matrix.data[8]<<" "<<camera_matrix.data[9]<<" "<<camera_matrix.data[10]<<" "<<camera_matrix.data[11]<<std::endl;
-//    std::cout<<camera_matrix.data[12]<<" "<<camera_matrix.data[13]<<" "<<camera_matrix.data[14]<<" "<<camera_matrix.data[15]<<std::endl<<std::endl;
+//	Matrix4x4 cm = Matrix4x4(camera_matrix.data);
+//    std::cout<<"camera matrix"<<std::endl;
+//    cm.print();
     
 	// Calculate the camera projection matrix (with given near and far clipping planes)
 	projection_matrix = pointcloud_get_frustum(0.1, 100);
-    
-//    std::cout<<projection_matrix.data[0]<<" "<<projection_matrix.data[1]<<" "<<projection_matrix.data[2]<<" "<<projection_matrix.data[3]<<std::endl;
-//    std::cout<<projection_matrix.data[4]<<" "<<projection_matrix.data[5]<<" "<<projection_matrix.data[6]<<" "<<projection_matrix.data[7]<<std::endl;
-//    std::cout<<projection_matrix.data[8]<<" "<<projection_matrix.data[9]<<" "<<projection_matrix.data[10]<<" "<<projection_matrix.data[11]<<std::endl;
-//    std::cout<<projection_matrix.data[12]<<" "<<projection_matrix.data[13]<<" "<<projection_matrix.data[14]<<" "<<projection_matrix.data[15]<<std::endl<<std::endl;
+//    Matrix4x4 pm = Matrix4x4(projection_matrix.data);
+//    std::cout<<"projection matrix"<<std::endl;
+//    pm.print();
 
-    
     render_point_cloud();
 }

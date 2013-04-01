@@ -14,6 +14,14 @@ enum {
     ATTRIB_POINTPOS
 };
 
+//uniform enums
+enum {
+    UNIFORM_MODELVIEWPROJECTION,
+    NUM_UNIFORMS
+};
+
+GLint uniforms[NUM_UNIFORMS];
+
 @interface CameraViewController (){
     BOOL accelerometer_available;
     BOOL device_motion_available;
@@ -50,6 +58,7 @@ enum {
     //initialize the getting of accelerometer data
 	self.motionManager = [[CMMotionManager alloc] init];
 	
+    
     //is there an accelerometer?
 	if (self.motionManager.accelerometerAvailable) {
 		accelerometer_available = true;
@@ -361,7 +370,7 @@ machineName()
     }
     
     // Get uniform locations.
-    //    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
+    uniforms[UNIFORM_MODELVIEWPROJECTION] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
     //    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
     //    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(_program, "texture");
     

@@ -14,7 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "PointCloudProcessing.h"
-#import "GraphicsSingleton.h"
+//#import "GraphicsSingleton.h"
 
 @interface CameraViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate> {
 }
