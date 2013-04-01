@@ -77,13 +77,18 @@ void PointCloudProcessing::render_point_cloud(){
         
         pointcloud_point_cloud* points = pointcloud_get_points();
 		
-        if (points) {			
+        if (points) {
+//            std::cout<<"points size = "<<points->size<<std::endl;
+            //TODO: move these to the singleton?
+            glEnable(GL_DEPTH_TEST);
+            //glBlendFunc(GL_ONE, GL_SRC_COLOR);
+            
             //TODO: add points to the buffer (_vertexBuffer in the graphicsSingleton...)?
             glBufferData(GL_ARRAY_BUFFER, 3*(std::min(5012, (int)points->size)), points->points, GL_DYNAMIC_DRAW);
             glEnableVertexAttribArray(ATTRIB_POINTPOS);
             glDrawArrays(GL_POINTS, 0, points->size);
             
-			pointcloud_destroy_point_cloud(points);
+//			pointcloud_destroy_point_cloud(points);
         }
 //    } else if (state == POINTCLOUD_TRACKING_IMAGES) {
 //        printf("tracking images\n");

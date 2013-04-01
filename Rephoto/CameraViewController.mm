@@ -58,8 +58,15 @@
         NSLog(@"Failed to create ES context");
     }
     
+//    GLKView *view = (GLKView *)self.view;
+//    view.context = self.context;
+//    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    
+    [EAGLContext setCurrentContext:self.context];
+    
     graphicsSing = [GraphicsSingleton sharedInstance];
     [graphicsSing setupGLwithContext:self.context];
+    glUseProgram(graphicsSing.program);
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,12 +131,16 @@
     
     [self.captureSession setSessionPreset: AVCaptureSessionPresetMedium];
     
-    //set up the preview layer
-    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
-    [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    self.previewLayer.frame = self.view.bounds;
-    //put preview layer on the bottom
-    [self.view.layer insertSublayer:self.previewLayer atIndex:0];
+    // if block for easy debugging
+    if (false){
+        //set up the preview layer
+        self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
+        [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+        self.previewLayer.frame = self.view.bounds;
+        //put preview layer on the bottom
+        [self.view.layer insertSublayer:self.previewLayer atIndex:0];
+    }
+    
     //potentially add a custom pointLayer
     self.pointLayer = [CALayer layer];
     self.pointLayer.frame = self.view.bounds;
@@ -265,5 +276,9 @@ machineName()
 	
     return systemInfo.machine;
 }
+
+
+//GRAPHICS LOADING HELPER METHODS
+//TODO: move these into a graphics singleton
 
 @end
