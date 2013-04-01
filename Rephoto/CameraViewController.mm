@@ -9,6 +9,7 @@
 #import "CameraViewController.h"
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
+//attribute enums
 enum {
     ATTRIB_POINTPOS
 };
