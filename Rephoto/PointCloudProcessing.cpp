@@ -97,5 +97,22 @@ void PointCloudProcessing::render_point_cloud(){
 
 void PointCloudProcessing::frame_process(char *data, double timestamp){
     pointcloud_on_camera_frame(data, timestamp);
+    
+    camera_matrix = pointcloud_get_camera_matrix();
+	
+//    std::cout<<camera_matrix.data[0]<<" "<<camera_matrix.data[1]<<" "<<camera_matrix.data[2]<<" "<<camera_matrix.data[3]<<std::endl;
+//    std::cout<<camera_matrix.data[4]<<" "<<camera_matrix.data[5]<<" "<<camera_matrix.data[6]<<" "<<camera_matrix.data[7]<<std::endl;
+//    std::cout<<camera_matrix.data[8]<<" "<<camera_matrix.data[9]<<" "<<camera_matrix.data[10]<<" "<<camera_matrix.data[11]<<std::endl;
+//    std::cout<<camera_matrix.data[12]<<" "<<camera_matrix.data[13]<<" "<<camera_matrix.data[14]<<" "<<camera_matrix.data[15]<<std::endl<<std::endl;
+    
+	// Calculate the camera projection matrix (with given near and far clipping planes)
+	projection_matrix = pointcloud_get_frustum(0.1, 100);
+    
+//    std::cout<<projection_matrix.data[0]<<" "<<projection_matrix.data[1]<<" "<<projection_matrix.data[2]<<" "<<projection_matrix.data[3]<<std::endl;
+//    std::cout<<projection_matrix.data[4]<<" "<<projection_matrix.data[5]<<" "<<projection_matrix.data[6]<<" "<<projection_matrix.data[7]<<std::endl;
+//    std::cout<<projection_matrix.data[8]<<" "<<projection_matrix.data[9]<<" "<<projection_matrix.data[10]<<" "<<projection_matrix.data[11]<<std::endl;
+//    std::cout<<projection_matrix.data[12]<<" "<<projection_matrix.data[13]<<" "<<projection_matrix.data[14]<<" "<<projection_matrix.data[15]<<std::endl<<std::endl;
+
+    
     render_point_cloud();
 }
