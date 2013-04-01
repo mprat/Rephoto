@@ -81,11 +81,16 @@ void PointCloudProcessing::render_point_cloud(){
             //model view projection matrix
             Matrix4x4 mvp = Matrix4x4(projection_matrix.data) * Matrix4x4(camera_matrix.data);
 //            mvp.print();
-            std::cout<<*((float*)mvp)<<std::endl;
+//            std::cout<<*((float*)mvp)<<std::endl;
             glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float*)mvp);
             
 //            std::cout<<"points size = "<<points->size<<std::endl;
             //TODO: move these to the singleton?
+//            glEnable(GL_LIGHTING);
+//            glEnable(GL_LIGHT0);
+//            glShadeModel(GL_SMOOTH);
+            glDisable(GL_BLEND);
+            glDisable(GL_TEXTURE_2D);
             glEnable(GL_DEPTH_TEST);
             //glBlendFunc(GL_ONE, GL_SRC_COLOR);
             
