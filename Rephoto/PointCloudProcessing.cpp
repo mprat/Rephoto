@@ -14,14 +14,7 @@ enum {
     ATTRIB_POINTPOS
 };
 
-//uniform enums
-enum {
-    UNIFORM_MODELVIEWPROJECTION,
-    NUM_UNIFORMS
-};
-GLint uniforms[NUM_UNIFORMS];
-
-PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device, const char* resource_path){
+PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device, const char* resource_path, GLint model_view_projection_uniform){
     pointcloud_create(viewport_width, viewport_height,
 					  video_width, video_height,
 					  video_format,
@@ -33,6 +26,7 @@ PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_heig
     std::string image_target_2_path = resource_path + std::string("image_target_2.model");
     
     pointcloud_add_image_target("image_2", image_target_2_path.c_str(), 0.3, -1);
+    mvp_uniform = model_view_projection_uniform;
 }
 
 PointCloudProcessing::~PointCloudProcessing(){
@@ -87,7 +81,8 @@ void PointCloudProcessing::render_point_cloud(){
             //model view projection matrix
             Matrix4x4 mvp = Matrix4x4(projection_matrix.data) * Matrix4x4(camera_matrix.data);
 //            mvp.print();
-            glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION], 1, 0, (GLfloat *)((float*)mvp));
+            std::cout<<*((float*)mvp)<<std::endl;
+            glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float*)mvp);
             
 //            std::cout<<"points size = "<<points->size<<std::endl;
             //TODO: move these to the singleton?

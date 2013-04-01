@@ -18,7 +18,7 @@
 
 class PointCloudProcessing {
 public:
-    PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device, const char* resource_path);
+    PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device, const char* resource_path, GLint model_view_projection_uniform);
     ~PointCloudProcessing();
     
     void on_accelerometer_update(float x, float y, float z, double timestamp);
@@ -33,7 +33,7 @@ public:
 protected:
     pointcloud_matrix_4x4 projection_matrix;
 	pointcloud_matrix_4x4 camera_matrix;
-
+    GLint mvp_uniform;
 };
 
 #endif /* defined(__Rephoto__PointCloudProcessing__) */
