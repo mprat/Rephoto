@@ -51,56 +51,56 @@ GLint uniforms[NUM_UNIFORMS];
 {
     [super viewDidLoad];
     
-    accelerometer_available = false;
-    device_motion_available = false;
-    
-    //guarantee that init camera will get called before camera is started
-    [self initCamera];
-	
-    //initialize the getting of accelerometer data
-	self.motionManager = [[CMMotionManager alloc] init];
-	
-    
-    //is there an accelerometer?
-	if (self.motionManager.accelerometerAvailable) {
-		accelerometer_available = true;
-		[self.motionManager startAccelerometerUpdates];
-	}
-	
-    //can i get device motion?
-	if (self.motionManager.deviceMotionAvailable) {
-		device_motion_available = true;
-		[self.motionManager startDeviceMotionUpdates];
-	}
-    
-    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    
-    if (!self.context) {
-        NSLog(@"Failed to create ES context");
-    }
-
-//    GLKView *view = (GLKView *)self.view;
-//    view.context = self.context;
-//    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    
-//    graphicsSing = [GraphicsSingleton sharedInstance];
-//    [graphicsSing setupGLwithContext:self.context];
-//    glUseProgram(graphicsSing.program);
-    
-    [self setupGL];
-    
-    //custom pointLayer for openGL rendering
-    self.pointLayer = [CAEAGLLayer layer];
-    self.pointLayer.opaque = YES;
-    self.pointLayer.frame = self.view.bounds;
-    [self.view.layer insertSublayer:self.pointLayer atIndex:0];
-    
-    glClearColor(0.65f, 0.65f, 0.65f, 0.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glEnable(GL_DEPTH_TEST);
-    
-    // Render the object with ES2
-    glUseProgram(_program);
+//    accelerometer_available = false;
+//    device_motion_available = false;
+//    
+//    //guarantee that init camera will get called before camera is started
+//    [self initCamera];
+//	
+//    //initialize the getting of accelerometer data
+//	self.motionManager = [[CMMotionManager alloc] init];
+//	
+//    
+//    //is there an accelerometer?
+//	if (self.motionManager.accelerometerAvailable) {
+//		accelerometer_available = true;
+//		[self.motionManager startAccelerometerUpdates];
+//	}
+//	
+//    //can i get device motion?
+//	if (self.motionManager.deviceMotionAvailable) {
+//		device_motion_available = true;
+//		[self.motionManager startDeviceMotionUpdates];
+//	}
+//    
+////    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+////    
+////    if (!self.context) {
+////        NSLog(@"Failed to create ES context");
+////    }
+//
+////    GLKView *view = (GLKView *)self.view;
+////    view.context = self.context;
+////    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+//    
+////    graphicsSing = [GraphicsSingleton sharedInstance];
+////    [graphicsSing setupGLwithContext:self.context];
+////    glUseProgram(graphicsSing.program);
+//    
+////    [self setupGL];
+//    
+//    //custom pointLayer for openGL rendering
+////    self.pointLayer = [CAEAGLLayer layer];
+////    self.pointLayer.opaque = YES;
+////    self.pointLayer.frame = self.view.bounds;
+////    [self.view.layer insertSublayer:self.pointLayer atIndex:0];
+//    
+////    glClearColor(0.65f, 0.65f, 0.65f, 0.0f);
+////    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+////    glEnable(GL_DEPTH_TEST);
+////    
+////    // Render the object with ES2
+////    glUseProgram(_program);
 }
 
 - (void)didReceiveMemoryWarning

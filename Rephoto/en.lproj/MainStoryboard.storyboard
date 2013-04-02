@@ -8,7 +8,7 @@
         <scene sceneID="4">
             <objects>
                 <viewController id="2" customClass="CameraViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5">
+                    <view key="view" contentMode="scaleToFill" id="5" customClass="PointView">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -51,6 +51,9 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PointView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PointView.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

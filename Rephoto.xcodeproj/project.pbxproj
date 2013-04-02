@@ -18,6 +18,7 @@
 		983AD84916E16349002870E8 /* PointCloudProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 983AD84716E16349002870E8 /* PointCloudProcessing.cpp */; };
 		983AD84C16E1689F002870E8 /* GraphicsSingleton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */; };
 		983AD86F16E1700A002870E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983AD86E16E1700A002870E8 /* QuartzCore.framework */; };
+		98423E8F170B635F0053825D /* PointView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98423E8E170B635F0053825D /* PointView.mm */; };
 		984EE9BC16DD2D7F00BD24D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BB16DD2D7F00BD24D5 /* UIKit.framework */; };
 		984EE9BE16DD2D7F00BD24D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BD16DD2D7F00BD24D5 /* Foundation.framework */; };
 		984EE9C016DD2D7F00BD24D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BF16DD2D7F00BD24D5 /* CoreGraphics.framework */; };
@@ -27,7 +28,6 @@
 		984EE9CE16DD2D7F00BD24D5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9CD16DD2D7F00BD24D5 /* Default.png */; };
 		984EE9D016DD2D7F00BD24D5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9CF16DD2D7F00BD24D5 /* Default@2x.png */; };
 		984EE9D216DD2D7F00BD24D5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9D116DD2D7F00BD24D5 /* Default-568h@2x.png */; };
-		984EE9D516DD2D7F00BD24D5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9D316DD2D7F00BD24D5 /* MainStoryboard.storyboard */; };
 		984EE9D816DD2D7F00BD24D5 /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */; };
 		9890D57016F8D8EB00EAC19E /* image_target_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9890D56E16F8D8EB00EAC19E /* image_target_2.jpg */; };
 		9890D57116F8D8EB00EAC19E /* image_target_2.model in Resources */ = {isa = PBXBuildFile; fileRef = 9890D56F16F8D8EB00EAC19E /* image_target_2.model */; };
@@ -53,6 +53,9 @@
 		983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GraphicsSingleton.mm; sourceTree = "<group>"; };
 		983AD86C16E16BB1002870E8 /* PointCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointCloud.h; path = ../libpointcloud_iOS/PointCloud.h; sourceTree = "<group>"; };
 		983AD86E16E1700A002870E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		98423E8D170B635F0053825D /* PointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointView.h; sourceTree = "<group>"; };
+		98423E8E170B635F0053825D /* PointView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PointView.mm; sourceTree = "<group>"; };
+		98423E93170B69ED0053825D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = Rephoto/en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		984EE9B716DD2D7F00BD24D5 /* Rephoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rephoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		984EE9BB16DD2D7F00BD24D5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		984EE9BD16DD2D7F00BD24D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,7 +69,6 @@
 		984EE9CD16DD2D7F00BD24D5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		984EE9CF16DD2D7F00BD24D5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		984EE9D116DD2D7F00BD24D5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		984EE9D416DD2D7F00BD24D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		984EE9D616DD2D7F00BD24D5 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraViewController.mm; sourceTree = "<group>"; };
 		9890D56E16F8D8EB00EAC19E /* image_target_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_target_2.jpg; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				98279D91170A395C0098E5FA /* cpplinearalgebra */,
+				98423E92170B69ED0053825D /* MainStoryboard.storyboard */,
 				9806059416F92100005CDD83 /* Shader.fsh */,
 				9806059716F9210D005CDD83 /* Shader.vsh */,
 				983AD84A16E1689F002870E8 /* GraphicsSingleton.h */,
@@ -161,7 +164,8 @@
 				983AD84816E16349002870E8 /* PointCloudProcessing.h */,
 				984EE9CA16DD2D7F00BD24D5 /* CameraAppDelegate.h */,
 				984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.mm */,
-				984EE9D316DD2D7F00BD24D5 /* MainStoryboard.storyboard */,
+				98423E8D170B635F0053825D /* PointView.h */,
+				98423E8E170B635F0053825D /* PointView.mm */,
 				984EE9D616DD2D7F00BD24D5 /* CameraViewController.h */,
 				984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */,
 				984EE9C216DD2D7F00BD24D5 /* Supporting Files */,
@@ -250,7 +254,6 @@
 				984EE9CE16DD2D7F00BD24D5 /* Default.png in Resources */,
 				984EE9D016DD2D7F00BD24D5 /* Default@2x.png in Resources */,
 				984EE9D216DD2D7F00BD24D5 /* Default-568h@2x.png in Resources */,
-				984EE9D516DD2D7F00BD24D5 /* MainStoryboard.storyboard in Resources */,
 				9890D57016F8D8EB00EAC19E /* image_target_2.jpg in Resources */,
 				9890D57116F8D8EB00EAC19E /* image_target_2.model in Resources */,
 				98279D96170A395D0098E5FA /* .gitignore in Resources */,
@@ -273,26 +276,28 @@
 				9806059516F92100005CDD83 /* Shader.fsh in Sources */,
 				9806059816F9210D005CDD83 /* Shader.vsh in Sources */,
 				98279D97170A395D0098E5FA /* Matrix4x4.cpp in Sources */,
+				98423E8F170B635F0053825D /* PointView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		98423E92170B69ED0053825D /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98423E93170B69ED0053825D /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		984EE9C416DD2D7F00BD24D5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				984EE9C516DD2D7F00BD24D5 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		984EE9D316DD2D7F00BD24D5 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				984EE9D416DD2D7F00BD24D5 /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
