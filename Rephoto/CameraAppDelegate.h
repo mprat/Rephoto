@@ -11,12 +11,12 @@
 #import "CameraViewController.h"
 
 @interface CameraAppDelegate : UIResponder <UIApplicationDelegate>{
-    PointView* pointView;
+    //PointView* pointView;
     CameraViewController *mainVC;
 }
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) IBOutlet PointView *pointView;
+//@property (strong, nonatomic) IBOutlet PointView *pointView;
 @property (strong, nonatomic) CameraViewController *mainVC;
 
 @end

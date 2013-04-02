@@ -7,6 +7,7 @@
 //
 
 #import "CameraViewController.h"
+#import "PointView.h"
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
 //attribute enums
@@ -32,7 +33,6 @@ GLint uniforms[NUM_UNIFORMS];
     
     GLuint _program;
     GLuint _vertexBuffer;
-    
 }
 @property (strong, nonatomic) EAGLContext *context;
 
@@ -46,6 +46,7 @@ GLint uniforms[NUM_UNIFORMS];
 @synthesize pointLayer = _pointLayer;
 @synthesize timestamp = _timestamp;
 @synthesize context = _context;
+@synthesize pointView = _pointView;
 
 - (void)viewDidLoad
 {
@@ -90,17 +91,17 @@ GLint uniforms[NUM_UNIFORMS];
 ////    [self setupGL];
 //    
 //    //custom pointLayer for openGL rendering
-////    self.pointLayer = [CAEAGLLayer layer];
-////    self.pointLayer.opaque = YES;
-////    self.pointLayer.frame = self.view.bounds;
-////    [self.view.layer insertSublayer:self.pointLayer atIndex:0];
-//    
+//    self.pointLayer = [CAEAGLLayer layer];
+//    self.pointLayer.opaque = YES;
+//    self.pointLayer.frame = self.view.bounds;
+//    [self.view.layer insertSublayer:self.pointLayer atIndex:0];
+//
 ////    glClearColor(0.65f, 0.65f, 0.65f, 0.0f);
 ////    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 ////    glEnable(GL_DEPTH_TEST);
 ////    
 ////    // Render the object with ES2
-////    glUseProgram(_program);
+////    glUseProgram(_program);    
 }
 
 - (void)didReceiveMemoryWarning

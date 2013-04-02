@@ -10,7 +10,7 @@
 
 @implementation CameraAppDelegate
 
-@synthesize pointView = _pointView;
+//@synthesize pointView = _pointView;
 @synthesize window = _window;
 @synthesize mainVC = _mainVC;
 
@@ -19,10 +19,10 @@
     // Override point for customization after application launch.
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    self.pointView = [[PointView alloc] initWithFrame:screenBounds];
+    //self.pointView = [[PointView alloc] initWithFrame:screenBounds];
     _mainVC = [[CameraViewController alloc] initWithNibName:nil bundle:nil];
 	[_window setRootViewController:_mainVC];
-    [self.window addSubview:_pointView];
+    //[self.window addSubview:_pointView];
     [_window makeKeyAndVisible];
     return YES;
 }
