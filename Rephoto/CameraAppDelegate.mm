@@ -16,9 +16,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    _window = [[UIWindow alloc] initWithFrame:screenBounds];
     //self.pointView = [[PointView alloc] initWithFrame:screenBounds];
     _mainVC = [[CameraViewController alloc] initWithNibName:nil bundle:nil];
 	[_window setRootViewController:_mainVC];
