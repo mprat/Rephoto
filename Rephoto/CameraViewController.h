@@ -24,7 +24,6 @@
 @property (strong, nonatomic) CALayer *pointLayer;
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (nonatomic) Float64 timestamp;
-@property (strong, nonatomic) EAGLContext *context;
 
 -(void)startCapture;
 - (IBAction)SlamInitButtonPressed:(id)sender;

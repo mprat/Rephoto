@@ -34,6 +34,8 @@ GLint uniforms[NUM_UNIFORMS];
     GLuint _vertexBuffer;
     
 }
+@property (strong, nonatomic) EAGLContext *context;
+
 @end
 
 @implementation CameraViewController
@@ -76,7 +78,7 @@ GLint uniforms[NUM_UNIFORMS];
     if (!self.context) {
         NSLog(@"Failed to create ES context");
     }
-    
+
 //    GLKView *view = (GLKView *)self.view;
 //    view.context = self.context;
 //    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
@@ -86,6 +88,18 @@ GLint uniforms[NUM_UNIFORMS];
 //    glUseProgram(graphicsSing.program);
     
     [self setupGL];
+    
+    //custom pointLayer for openGL rendering
+    self.pointLayer = [CAEAGLLayer layer];
+    self.pointLayer.opaque = YES;
+    self.pointLayer.frame = self.view.bounds;
+    [self.view.layer insertSublayer:self.pointLayer atIndex:0];
+    
+    glClearColor(0.65f, 0.65f, 0.65f, 0.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+    
+    // Render the object with ES2
     glUseProgram(_program);
 }
 
@@ -160,11 +174,6 @@ GLint uniforms[NUM_UNIFORMS];
         //put preview layer on the bottom
         [self.view.layer insertSublayer:self.previewLayer atIndex:0];
     }
-    
-    //potentially add a custom pointLayer
-    self.pointLayer = [CALayer layer];
-    self.pointLayer.frame = self.view.bounds;
-    [self.view.layer insertSublayer:self.pointLayer atIndex:1];
     
     //starts camera automatically
     [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(startCapture) userInfo:nil repeats:NO];

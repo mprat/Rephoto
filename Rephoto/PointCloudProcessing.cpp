@@ -91,7 +91,6 @@ void PointCloudProcessing::render_point_cloud(){
 //            glShadeModel(GL_SMOOTH);
             glDisable(GL_BLEND);
             glDisable(GL_TEXTURE_2D);
-            glEnable(GL_DEPTH_TEST);
             //glBlendFunc(GL_ONE, GL_SRC_COLOR);
             
             //TODO: add points to the buffer (_vertexBuffer in the graphicsSingleton...)?
