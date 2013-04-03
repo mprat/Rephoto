@@ -21,16 +21,26 @@ PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_heig
 					  device,
 					  "f15df684-4a28-4afc-a31c-c4e6fb73969d");
     
-    //for now set up image targets here. can always change to some other input later
-    // Add images to look for (detection will not start until images are activated, though)
-    std::string image_target_2_path = resource_path + std::string("image_target_2.model");
+//    //for now set up image targets here. can always change to some other input later
+//    // Add images to look for (detection will not start until images are activated, though)
+//    std::string image_target_2_path = resource_path + std::string("image_target_2.model");
+//    pointcloud_add_image_target("image_2", image_target_2_path.c_str(), 0.3, -1);
+//    
+
+    setup_graphics();
     
-    pointcloud_add_image_target("image_2", image_target_2_path.c_str(), 0.3, -1);
     mvp_uniform = model_view_projection_uniform;
 }
 
 PointCloudProcessing::~PointCloudProcessing(){
     pointcloud_destroy();
+}
+
+void PointCloudProcessing::setup_graphics(){
+    pointcloud_context context = pointcloud_get_context();
+    
+    //TODO: add ui_scale_scale factor?
+    glViewport(0, 0, context.viewport_width, context.viewport_height);
 }
 
 void PointCloudProcessing::on_accelerometer_update(float x, float y, float z, double timestamp){
@@ -85,30 +95,26 @@ void PointCloudProcessing::render_point_cloud(){
         pointcloud_point_cloud* points = pointcloud_get_points();
 		
         if (points) {
+            glEnable(GL_BLEND);
+            //do I change this to GL_SRC_ONE_MINUS_ALPHA? it blinks black and white what the heck do I know
+            glBlendFunc(GL_SRC_ALPHA, GL_SRC_ALPHA);
+            
             //model view projection matrix
             Matrix4x4 mvp = Matrix4x4(projection_matrix.data) * Matrix4x4(camera_matrix.data);
 //            mvp.print();
 //            std::cout<<*((float*)mvp)<<std::endl;
             glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float*)mvp);
             
-//            std::cout<<"points size = "<<points->size<<std::endl;
-            //TODO: move these to the singleton?
-//            glEnable(GL_LIGHTING);
-//            glEnable(GL_LIGHT0);
-//            glShadeModel(GL_SMOOTH);
-//            glDisable(GL_BLEND);
-//            glDisable(GL_TEXTURE_2D);
-            //glBlendFunc(GL_ONE, GL_SRC_COLOR);
-            
-            std::cout<<points->points<<std::endl;
             
             //TODO: add points to the buffer (_vertexBuffer in the graphicsSingleton...)?
-            glBufferData(GL_ARRAY_BUFFER, 3*sizeof(GLfloat)*(std::min(5012, (int)points->size)), points->points, GL_DYNAMIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, 3*sizeof(float)*(std::min(5012, (int)points->size)), (float *)points->points, GL_DYNAMIC_DRAW);
             glEnableVertexAttribArray(ATTRIB_POINTPOS);
             glDrawArrays(GL_POINTS, 0, points->size);
             
-//			pointcloud_destroy_point_cloud(points);
+			pointcloud_destroy_point_cloud(points);
         }
+        
+//        glDisableVertexAttribArray(ATTRIB_POINTPOS);
 //    } else if (state == POINTCLOUD_TRACKING_IMAGES) {
 //        printf("tracking images\n");
     }

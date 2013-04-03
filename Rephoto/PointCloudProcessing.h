@@ -36,6 +36,9 @@ protected:
     pointcloud_matrix_4x4 projection_matrix;
 	pointcloud_matrix_4x4 camera_matrix;
     GLint mvp_uniform;
+    
+private:
+    void setup_graphics();
 };
 
 #endif /* defined(__Rephoto__PointCloudProcessing__) */

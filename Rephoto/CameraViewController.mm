@@ -323,11 +323,12 @@ machineName()
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
     //initialize the size of the buffer
-    glBufferData(GL_ARRAY_BUFFER, 3*sizeof(GLfloat)*5012, NULL, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 3*sizeof(float)*5012, NULL, GL_DYNAMIC_DRAW);
+    
     
     //enable attribute locations
     glEnableVertexAttribArray(ATTRIB_POINTPOS);
-    glVertexAttribPointer(ATTRIB_POINTPOS, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), BUFFER_OFFSET(0));
+    glVertexAttribPointer(ATTRIB_POINTPOS, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
     //    glBindVertexArrayOES(0);
 }
 
