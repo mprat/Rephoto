@@ -69,6 +69,13 @@ bool PointCloudProcessing::start_slam(){
 }
 
 void PointCloudProcessing::render_point_cloud(){
+    
+    //if true and the screen goes really dark, then we really are rendering openGL from here
+    if (false){
+        glClearColor(0, 0, 0, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT);
+    }
+        
     pointcloud_state state = pointcloud_get_state();
 //    std::cout<<"Rendering point cloud state = "<<state<<std::endl;
     if (state == POINTCLOUD_INITIALIZING ||

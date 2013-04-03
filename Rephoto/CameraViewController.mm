@@ -65,11 +65,9 @@ GLint uniforms[NUM_UNIFORMS];
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     PointView* pointView = [[PointView alloc] initWithFrame:screenBounds withContext:self.context];
+    //TODO: fix this hack
+    pointView.alpha = 0.5; //0.5 is a good value to make sure it's working (1.0 is completely opaque)
     [self.view insertSubview:pointView atIndex:0];
-    
-    glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    [_context presentRenderbuffer:GL_RENDERBUFFER];
     
     accelerometer_available = false;
     device_motion_available = false;
@@ -91,20 +89,7 @@ GLint uniforms[NUM_UNIFORMS];
 		device_motion_available = true;
 		[self.motionManager startDeviceMotionUpdates];
 	}
-//
-////    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-////    
-////    if (!self.context) {
-////        NSLog(@"Failed to create ES context");
-////    }
-//
-////    GLKView *view = (GLKView *)self.view;
-////    view.context = self.context;
-////    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-//    
-////    graphicsSing = [GraphicsSingleton sharedInstance];
-////    [graphicsSing setupGLwithContext:self.context];
-////    glUseProgram(graphicsSing.program);
+    
 //    
 ////    [self setupGL];
 //    
@@ -120,6 +105,10 @@ GLint uniforms[NUM_UNIFORMS];
 ////    
 ////    // Render the object with ES2
 ////    glUseProgram(_program);
+    
+    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    [self.context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,7 +174,7 @@ GLint uniforms[NUM_UNIFORMS];
     [self.captureSession setSessionPreset: AVCaptureSessionPresetMedium];
     
     // if block for easy debugging
-    if (false){
+    if (true){
         //set up the preview layer
         self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
         [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
@@ -304,6 +293,8 @@ GLint uniforms[NUM_UNIFORMS];
 		char* ba = (char*)CVPixelBufferGetBaseAddress(pixelBuffer);
         
 		pointCloudProcessing->frame_process(ba, self.timestamp);
+        //any changes that are made in the frame_process code must be told to render after the frame is processed
+        [self.context presentRenderbuffer:GL_RENDERBUFFER];
 		
 		CVPixelBufferUnlockBaseAddress (pixelBuffer, 0);
 	}
