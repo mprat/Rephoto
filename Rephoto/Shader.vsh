@@ -3,6 +3,6 @@ uniform mat4 modelViewProjectionMatrix;
 
 void main(){
     gl_PointSize = 16.0;
-    gl_Position = position;
-//    gl_Position = modelViewProjectionMatrix*position;
+//    gl_Position = position;
+    gl_Position = modelViewProjectionMatrix*position;
 }

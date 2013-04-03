@@ -101,9 +101,13 @@ void PointCloudProcessing::render_point_cloud(){
             
             //model view projection matrix
             Matrix4x4 mvp = Matrix4x4(projection_matrix.data) * Matrix4x4(camera_matrix.data);
-//            mvp.print();
+            
+            std::cout<<"mvp"<<std::endl;
+            mvp.print();
+//            MATRIX4X4 mvp = MATRIX4X4(projection_matrix.data) * MATRIX4X4(camera_matrix.data);
 //            std::cout<<*((float*)mvp)<<std::endl;
-            glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float*)mvp);
+            float identity[16] = {2.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0};
+            glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, mvp.values);
             
             
             //TODO: add points to the buffer (_vertexBuffer in the graphicsSingleton...)?
@@ -130,9 +134,9 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
     
 	// Calculate the camera projection matrix (with given near and far clipping planes)
 	projection_matrix = pointcloud_get_frustum(0.1, 100);
-//    Matrix4x4 pm = Matrix4x4(projection_matrix.data);
-//    std::cout<<"projection matrix"<<std::endl;
-//    pm.print();
+    Matrix4x4 pm = Matrix4x4(projection_matrix.data);
+    std::cout<<"projection matrix"<<std::endl;
+    pm.print();
 
     render_point_cloud();
 }
