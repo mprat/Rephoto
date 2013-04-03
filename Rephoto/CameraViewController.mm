@@ -91,8 +91,8 @@ GLint uniforms[NUM_UNIFORMS];
 	}
     
 //    
-////    [self setupGL];
-//    
+    [self setupGL];
+//
 //    //custom pointLayer for openGL rendering
 //    self.pointLayer = [CAEAGLLayer layer];
 //    self.pointLayer.opaque = YES;
@@ -103,8 +103,6 @@ GLint uniforms[NUM_UNIFORMS];
 ////    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 ////    glEnable(GL_DEPTH_TEST);
 ////    
-////    // Render the object with ES2
-////    glUseProgram(_program);
     
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -319,9 +317,7 @@ machineName()
 
 //GRAPHICS LOADING HELPER METHODS
 //TODO: move these into a graphics singleton
--(void) setupGL{
-    [EAGLContext setCurrentContext:self.context];
-    
+-(void) setupGL{    
     [self loadShaders];
     
     glGenBuffers(1, &_vertexBuffer);
@@ -330,8 +326,8 @@ machineName()
     glBufferData(GL_ARRAY_BUFFER, 3*sizeof(GLfloat)*5012, NULL, GL_DYNAMIC_DRAW);
     
     //enable attribute locations
-    glVertexAttribPointer(ATTRIB_POINTPOS, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), BUFFER_OFFSET(0));
     glEnableVertexAttribArray(ATTRIB_POINTPOS);
+    glVertexAttribPointer(ATTRIB_POINTPOS, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), BUFFER_OFFSET(0));
     //    glBindVertexArrayOES(0);
 }
 
@@ -402,7 +398,7 @@ machineName()
         glDeleteShader(fragShader);
     }
     
-    //    glUseProgram(_program);
+    glUseProgram(_program);
     
     return YES;
 }
