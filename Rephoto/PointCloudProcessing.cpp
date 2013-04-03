@@ -96,9 +96,11 @@ void PointCloudProcessing::render_point_cloud(){
 //            glEnable(GL_LIGHTING);
 //            glEnable(GL_LIGHT0);
 //            glShadeModel(GL_SMOOTH);
-            glDisable(GL_BLEND);
-            glDisable(GL_TEXTURE_2D);
+//            glDisable(GL_BLEND);
+//            glDisable(GL_TEXTURE_2D);
             //glBlendFunc(GL_ONE, GL_SRC_COLOR);
+            
+            std::cout<<points->points<<std::endl;
             
             //TODO: add points to the buffer (_vertexBuffer in the graphicsSingleton...)?
             glBufferData(GL_ARRAY_BUFFER, 3*sizeof(GLfloat)*(std::min(5012, (int)points->size)), points->points, GL_DYNAMIC_DRAW);
