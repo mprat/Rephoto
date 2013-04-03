@@ -46,34 +46,52 @@ GLint uniforms[NUM_UNIFORMS];
 @synthesize pointLayer = _pointLayer;
 @synthesize timestamp = _timestamp;
 @synthesize context = _context;
-@synthesize pointView = _pointView;
+//@synthesize pointView = _pointView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-//    accelerometer_available = false;
-//    device_motion_available = false;
-//    
-//    //guarantee that init camera will get called before camera is started
-//    [self initCamera];
-//	
-//    //initialize the getting of accelerometer data
-//	self.motionManager = [[CMMotionManager alloc] init];
-//	
-//    
-//    //is there an accelerometer?
-//	if (self.motionManager.accelerometerAvailable) {
-//		accelerometer_available = true;
-//		[self.motionManager startAccelerometerUpdates];
-//	}
-//	
-//    //can i get device motion?
-//	if (self.motionManager.deviceMotionAvailable) {
-//		device_motion_available = true;
-//		[self.motionManager startDeviceMotionUpdates];
-//	}
-//    
+    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    if (!self.context) {
+        NSLog(@"Failed to initialize OpenGLES 2.0 context");
+        exit(1);
+    }
+    
+    if (![EAGLContext setCurrentContext:_context]) {
+        NSLog(@"Failed to set current OpenGL context");
+        exit(1);
+    }
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    PointView* pointView = [[PointView alloc] initWithFrame:screenBounds withContext:self.context];
+    [self.view insertSubview:pointView atIndex:0];
+    
+    glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    [_context presentRenderbuffer:GL_RENDERBUFFER];
+    
+    accelerometer_available = false;
+    device_motion_available = false;
+
+    //guarantee that init camera will get called before camera is started
+    [self initCamera];
+
+    //initialize the getting of accelerometer data
+	self.motionManager = [[CMMotionManager alloc] init];
+    
+    //is there an accelerometer?
+	if (self.motionManager.accelerometerAvailable) {
+		accelerometer_available = true;
+		[self.motionManager startAccelerometerUpdates];
+	}
+	
+    //can i get device motion?
+	if (self.motionManager.deviceMotionAvailable) {
+		device_motion_available = true;
+		[self.motionManager startDeviceMotionUpdates];
+	}
+//
 ////    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 ////    
 ////    if (!self.context) {
@@ -101,7 +119,7 @@ GLint uniforms[NUM_UNIFORMS];
 ////    glEnable(GL_DEPTH_TEST);
 ////    
 ////    // Render the object with ES2
-////    glUseProgram(_program);    
+////    glUseProgram(_program);
 }
 
 - (void)didReceiveMemoryWarning

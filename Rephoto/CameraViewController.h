@@ -18,7 +18,7 @@
 //#import "GraphicsSingleton.h"
 
 @interface CameraViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate> {
-    PointView* pointView;
+//    PointView* pointView;
 }
 
 @property (strong, nonatomic) AVCaptureSession *captureSession;
@@ -26,7 +26,7 @@
 @property (strong, nonatomic) CALayer *pointLayer;
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (nonatomic) Float64 timestamp;
-@property (strong, nonatomic) PointView *pointView;
+//@property (strong, nonatomic) PointView *pointView;
 
 -(void)startCapture;
 - (IBAction)SlamInitButtonPressed:(id)sender;

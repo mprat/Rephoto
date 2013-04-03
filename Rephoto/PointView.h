@@ -13,8 +13,10 @@
 
 @interface PointView : UIView {
     CAEAGLLayer* _eaglLayer;
-    EAGLContext* _context;
+//    EAGLContext* _context;
     GLuint _colorRenderBuffer;
 }
+
+- (id)initWithFrame:(CGRect)frame withContext:(EAGLContext*)context;
 
 @end

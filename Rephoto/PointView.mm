@@ -10,18 +10,17 @@
 
 @implementation PointView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame withContext:(EAGLContext*)context
 {    
     self = [super initWithFrame:frame];
     if (self) {
         [self setupLayer];
-        [self setupContext];
-        [self setupRenderBuffer];
+        //call setupContext externally to set up the context before calling 
+//        [self setupContext];
+        [self setupRenderBufferWithContext:context];
         [self setupFrameBuffer];
-        [self render];
+        //[self render];
     }
-    
-    NSLog(@"init with frame");
     return self;
 }
 
@@ -43,23 +42,23 @@
     _eaglLayer.opaque = YES;
 }
 
-- (void)setupContext {
-    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    if (!_context) {
-        NSLog(@"Failed to initialize OpenGLES 2.0 context");
-        exit(1);
-    }
-    
-    if (![EAGLContext setCurrentContext:_context]) {
-        NSLog(@"Failed to set current OpenGL context");
-        exit(1);
-    }
-}
+//- (void)setupContext {
+//    _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+//    if (!_context) {
+//        NSLog(@"Failed to initialize OpenGLES 2.0 context");
+//        exit(1);
+//    }
+//    
+//    if (![EAGLContext setCurrentContext:_context]) {
+//        NSLog(@"Failed to set current OpenGL context");
+//        exit(1);
+//    }
+//}
 
-- (void)setupRenderBuffer {
+- (void)setupRenderBufferWithContext:(EAGLContext*)context {
     glGenRenderbuffers(1, &_colorRenderBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBuffer);
-    [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:_eaglLayer];
+    [context renderbufferStorage:GL_RENDERBUFFER fromDrawable:_eaglLayer];
 }
 
 - (void)setupFrameBuffer {
@@ -70,10 +69,10 @@
                               GL_RENDERBUFFER, _colorRenderBuffer);
 }
 
-- (void)render {
-    glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    [_context presentRenderbuffer:GL_RENDERBUFFER];
-}
+//- (void)render {
+//    glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0);
+//    glClear(GL_COLOR_BUFFER_BIT);
+//    [_context presentRenderbuffer:GL_RENDERBUFFER];
+//}
 
 @end

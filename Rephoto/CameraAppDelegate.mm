@@ -12,18 +12,18 @@
 
 //@synthesize pointView = _pointView;
 @synthesize window = _window;
-@synthesize mainVC = _mainVC;
+//@synthesize mainVC = _mainVC;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    _window = [[UIWindow alloc] initWithFrame:screenBounds];
+//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+//    _window = [[UIWindow alloc] initWithFrame:screenBounds];
     //self.pointView = [[PointView alloc] initWithFrame:screenBounds];
-    _mainVC = [[CameraViewController alloc] initWithNibName:nil bundle:nil];
-	[_window setRootViewController:_mainVC];
+//    _mainVC = [[CameraViewController alloc] initWithNibName:nil bundle:nil];
+//	[_window setRootViewController:_mainVC];
     //[self.window addSubview:_pointView];
-    [_window makeKeyAndVisible];
+//    [_window makeKeyAndVisible];
     return YES;
 }
 							

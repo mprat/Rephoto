@@ -12,11 +12,11 @@
 
 @interface CameraAppDelegate : UIResponder <UIApplicationDelegate>{
     //PointView* pointView;
-    CameraViewController *mainVC;
+//    CameraViewController *mainVC;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 //@property (strong, nonatomic) IBOutlet PointView *pointView;
-@property (strong, nonatomic) CameraViewController *mainVC;
+//@property (strong, nonatomic) CameraViewController *mainVC;
 
 @end
