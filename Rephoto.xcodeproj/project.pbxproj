@@ -33,6 +33,7 @@
 		9891EA6516E0126F00834E74 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6416E0126F00834E74 /* CoreVideo.framework */; };
 		9891EA6716E0172A00834E74 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6616E0172A00834E74 /* CoreMotion.framework */; };
 		98A4677D17134340009186FB /* Matrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98A4677B17134340009186FB /* Matrix4x4.cpp */; };
+		98A4678317134E72009186FB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98423E92170B69ED0053825D /* MainStoryboard.storyboard */; };
 		98B598A016E5654A007BF4C3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B5989F16E5654A007BF4C3 /* Accelerate.framework */; };
 		98B598A216E56553007BF4C3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B598A116E56553007BF4C3 /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
@@ -242,6 +243,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98A4678317134E72009186FB /* MainStoryboard.storyboard in Resources */,
 				9806059916F922E5005CDD83 /* Shader.fsh in Resources */,
 				9806059A16F922E5005CDD83 /* Shader.vsh in Resources */,
 				984EE9C616DD2D7F00BD24D5 /* InfoPlist.strings in Resources */,

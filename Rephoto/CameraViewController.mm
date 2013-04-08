@@ -65,7 +65,7 @@ GLint uniforms[NUM_UNIFORMS];
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     PointView* pointView = [[PointView alloc] initWithFrame:screenBounds withContext:self.context];
-    //TODO: fix this hack
+    //TODO: fix this alpha hack
     pointView.alpha = 0.5; //0.5 is a good value to make sure it's working (1.0 is completely opaque)
     [self.view insertSubview:pointView atIndex:0];
     
@@ -92,17 +92,6 @@ GLint uniforms[NUM_UNIFORMS];
     
 //    
     [self setupGL];
-//
-//    //custom pointLayer for openGL rendering
-//    self.pointLayer = [CAEAGLLayer layer];
-//    self.pointLayer.opaque = YES;
-//    self.pointLayer.frame = self.view.bounds;
-//    [self.view.layer insertSublayer:self.pointLayer atIndex:0];
-//
-////    glClearColor(0.65f, 0.65f, 0.65f, 0.0f);
-////    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-////    glEnable(GL_DEPTH_TEST);
-////    
     
     glClearColor(0, 0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -196,6 +185,10 @@ GLint uniforms[NUM_UNIFORMS];
     
 //    pointCloudProcessing->start_match_to_image();
     pointCloudProcessing->start_slam();
+}
+
+- (IBAction)SameSlamButtonPressed:(id)sender {
+    NSLog(@"save button pressed");
 }
 
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate
