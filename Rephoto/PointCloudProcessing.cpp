@@ -79,17 +79,15 @@ bool PointCloudProcessing::start_slam(){
 }
 
 void PointCloudProcessing::render_point_cloud(){
+    //clear the color buffer bit before every time
+    //TODO: do we need to clear the depth buffer every bit as well?
+    glClearColor(0, 0, 0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
     
-    //if true and the screen goes really dark, then we really are rendering openGL from here
-    if (false){
-        glClearColor(0, 0, 0, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT);
-    }
-        
     pointcloud_state state = pointcloud_get_state();
 //    std::cout<<"Rendering point cloud state = "<<state<<std::endl;
-    if (state == POINTCLOUD_INITIALIZING ||
-		state == POINTCLOUD_TRACKING_SLAM_MAP) {
+//    if (state == POINTCLOUD_INITIALIZING || state == POINTCLOUD_TRACKING_SLAM_MAP) {
+    if (state == POINTCLOUD_INITIALIZING) {
 //        std::cout<<"initializing or tracking slam map"<<std::endl;
         
         pointcloud_point_cloud* points = pointcloud_get_points();
@@ -102,8 +100,8 @@ void PointCloudProcessing::render_point_cloud(){
             //model view projection matrix
             Matrix4x4 mvp = Matrix4x4(projection_matrix.data) * Matrix4x4(camera_matrix.data);
             
-            std::cout<<"mvp"<<std::endl;
-            mvp.print();
+//            std::cout<<"mvp"<<std::endl;
+//            mvp.print();
 
             glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
             
@@ -118,6 +116,8 @@ void PointCloudProcessing::render_point_cloud(){
 //        glDisableVertexAttribArray(ATTRIB_POINTPOS);
 //    } else if (state == POINTCLOUD_TRACKING_IMAGES) {
 //        printf("tracking images\n");
+    } else if (state == POINTCLOUD_TRACKING_SLAM_MAP){
+        std::cout<<"tracking slam map"<<std::endl;
     }
 }
 
