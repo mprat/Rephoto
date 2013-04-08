@@ -52,6 +52,7 @@ void PointCloudProcessing::on_device_motion_update(float x, float y, float z, fl
 }
 
 //method for starting the point-cloud process of localizing to an image
+//TODO: either get rid of or use this for something else
 bool PointCloudProcessing::start_match_to_image(){
     printf("Activating image target\n");
     pointcloud_reset();
@@ -76,6 +77,16 @@ bool PointCloudProcessing::start_slam(){
         return true;
 	}
     return false;
+}
+
+void PointCloudProcessing::save_slam_map(){
+    pointcloud_state state = pointcloud_get_state();
+    // only save a map when you are tracking the map
+    if (state == POINTCLOUD_TRACKING_SLAM_MAP){
+        pointcloud_save_current_map("test_slam_map_1");
+    } else {
+        std::cout<<"can't save map if it's not tracked"<<std::endl;
+    }
 }
 
 void PointCloudProcessing::render_point_cloud(){

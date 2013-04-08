@@ -188,7 +188,7 @@ GLint uniforms[NUM_UNIFORMS];
 }
 
 - (IBAction)SameSlamButtonPressed:(id)sender {
-    NSLog(@"save button pressed");
+    pointCloudProcessing->save_slam_map();
 }
 
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate

@@ -29,6 +29,7 @@ public:
     bool start_slam();
     
     void render_point_cloud();
+    void save_slam_map();
     
 protected:
     pointcloud_matrix_4x4 projection_matrix;
