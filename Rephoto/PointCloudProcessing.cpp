@@ -14,7 +14,14 @@ enum {
     ATTRIB_POINTPOS
 };
 
-PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device, const char* resource_path, GLint model_view_projection_uniform){
+//uniform index
+enum{
+    UNIFORM_MODELVIEWPROJECTION,
+    UNIFORM_POINTCOLOR,
+    NUM_UNIFORMS
+};
+
+PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_height, int video_width, int video_height, pointcloud_video_format video_format, const char* device, const char* resource_path, GLuint prog){
     pointcloud_create(viewport_width, viewport_height,
 					  video_width, video_height,
 					  video_format,
@@ -28,8 +35,7 @@ PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_heig
 //    
 
     setup_graphics();
-    
-    mvp_uniform = model_view_projection_uniform;
+    program = prog;
 }
 
 PointCloudProcessing::~PointCloudProcessing(){
@@ -102,24 +108,30 @@ void PointCloudProcessing::render_point_cloud(){
     
     pointcloud_state state = pointcloud_get_state();
 //    std::cout<<"Rendering point cloud state = "<<state<<std::endl;
-//    if (state == POINTCLOUD_INITIALIZING || state == POINTCLOUD_TRACKING_SLAM_MAP) {
-    if (state == POINTCLOUD_INITIALIZING) {
+    if (state == POINTCLOUD_INITIALIZING || state == POINTCLOUD_TRACKING_SLAM_MAP) {
+//    if (state == POINTCLOUD_INITIALIZING) {
 //        std::cout<<"initializing or tracking slam map"<<std::endl;
         
         pointcloud_point_cloud* points = pointcloud_get_points();
-		
+        
         if (points) {
             glEnable(GL_BLEND);
-            //do I change this to GL_SRC_ONE_MINUS_ALPHA? it blinks black and white what the heck do I know
             glBlendFunc(GL_SRC_ALPHA, GL_SRC_ALPHA);
             
             //model view projection matrix
-            Matrix4x4 mvp = Matrix4x4(projection_matrix.data) * Matrix4x4(camera_matrix.data);
-            
+            Matrix4x4 mvp = Matrix4x4(camera_matrix.data) * Matrix4x4(projection_matrix.data);
 //            std::cout<<"mvp"<<std::endl;
 //            mvp.print();
 
+            GLuint mvp_uniform = glGetUniformLocation(program, "modelViewProjectionMatrix");
+            GLuint color_uniform = glGetUniformLocation(program, "pointcolor");
             glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
+            if (state == POINTCLOUD_INITIALIZING){
+                glUniform4f(color_uniform, 1.0, 1.0, 0, 1.0);
+            }
+            else{
+                glUniform4f(color_uniform, 1.0, 0, 0, 1.0);
+            }
             
             //TODO: add points to the buffer (_vertexBuffer in the graphicsSingleton...)?
             glBufferData(GL_ARRAY_BUFFER, 3*sizeof(float)*(std::min(5012, (int)points->size)), (float *)points->points, GL_DYNAMIC_DRAW);
@@ -132,13 +144,14 @@ void PointCloudProcessing::render_point_cloud(){
 //        glDisableVertexAttribArray(ATTRIB_POINTPOS);
 //    } else if (state == POINTCLOUD_TRACKING_IMAGES) {
 //        printf("tracking images\n");
-    } else if (state == POINTCLOUD_TRACKING_SLAM_MAP){
-//        std::cout<<"tracking slam map"<<std::endl;
-        //here it is tracking the camera pose
-        camera_pose = pointcloud_get_camera_pose();
-//        Matrix4x4 cp = Matrix4x4(camera_pose.data);
-//        cp.print();
     }
+//    } else if (state == POINTCLOUD_TRACKING_SLAM_MAP){
+////        std::cout<<"tracking slam map"<<std::endl;
+//        //here it is tracking the camera pose
+//        camera_pose = pointcloud_get_camera_pose();
+////        Matrix4x4 cp = Matrix4x4(camera_pose.data);
+////        cp.print();
+//    }
 }
 
 void PointCloudProcessing::frame_process(char *data, double timestamp){
@@ -155,5 +168,5 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
 //    std::cout<<"projection matrix"<<std::endl;
 //    pm.print();
 
-    render_point_cloud();
+//    render_point_cloud();
 }

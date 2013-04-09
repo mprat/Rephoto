@@ -18,6 +18,7 @@ enum {
 //uniform enums
 enum {
     UNIFORM_MODELVIEWPROJECTION,
+    UNIFORM_POINTCOLOR,
     NUM_UNIFORMS
 };
 
@@ -251,7 +252,7 @@ GLint uniforms[NUM_UNIFORMS];
 											h,
 											POINTCLOUD_BGRA_8888,
                                             machineName(),
-											[resourcePath cStringUsingEncoding:[NSString defaultCStringEncoding]], uniforms[UNIFORM_MODELVIEWPROJECTION]);
+											[resourcePath cStringUsingEncoding:[NSString defaultCStringEncoding]], _program);
 	}
     
 	pixelBuffer = pixBuff;
@@ -296,6 +297,7 @@ GLint uniforms[NUM_UNIFORMS];
 		char* ba = (char*)CVPixelBufferGetBaseAddress(pixelBuffer);
         
 		pointCloudProcessing->frame_process(ba, self.timestamp);
+        pointCloudProcessing->render_point_cloud();
         //any changes that are made in the frame_process code must be told to render after the frame is processed
         [self.context presentRenderbuffer:GL_RENDERBUFFER];
 		
@@ -390,7 +392,8 @@ machineName()
     }
     
     // Get uniform locations.
-    uniforms[UNIFORM_MODELVIEWPROJECTION] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
+//    uniforms[UNIFORM_MODELVIEWPROJECTION] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
+//    uniforms[UNIFORM_POINTCOLOR] = glGetUniformLocation(_program, "pointcolor");
     //    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
     //    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(_program, "texture");
     
