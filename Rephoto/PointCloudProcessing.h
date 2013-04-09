@@ -30,7 +30,7 @@ public:
     bool start_slam();
     
     void render_point_cloud();
-    void save_slam_map();
+    void save_slam_map(std::string filename);
     void load_slam_filename(std::string filename);
     
 protected:

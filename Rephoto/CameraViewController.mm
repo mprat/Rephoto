@@ -188,11 +188,15 @@ GLint uniforms[NUM_UNIFORMS];
 }
 
 - (IBAction)SameSlamButtonPressed:(id)sender {
-    pointCloudProcessing->save_slam_map();
+    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test_slam_map_1"];
+    pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 - (IBAction)LoadSlamFromFilename:(id)sender {
-    pointCloudProcessing->load_slam_filename("test_slam_map_1");
+    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test_slam_map_1"];
+    pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate

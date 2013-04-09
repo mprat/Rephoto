@@ -79,18 +79,18 @@ bool PointCloudProcessing::start_slam(){
     return false;
 }
 
-void PointCloudProcessing::save_slam_map(){
+void PointCloudProcessing::save_slam_map(std::string filename){
     pointcloud_state state = pointcloud_get_state();
     // only save a map when you are tracking the map
     if (state == POINTCLOUD_TRACKING_SLAM_MAP){
-        pointcloud_save_current_map("test_slam_map_1");
+        pointcloud_save_current_map(filename.c_str());
     } else {
         std::cout<<"can't save map if it's not tracked"<<std::endl;
     }
 }
 
 void PointCloudProcessing::load_slam_filename(std::string filename){
-    pointcloud_load_map("test_slam_map_1");
+    pointcloud_load_map(filename.c_str());
     std::cout<<"loaded map from file!"<<std::endl;
 }
 
