@@ -10,6 +10,9 @@
 #import "PointView.h"
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
+#define TAG_SAVE 1
+#define TAG_LOAD 2
+
 //attribute enums
 enum {
     ATTRIB_POINTPOS
@@ -196,6 +199,7 @@ GLint uniforms[NUM_UNIFORMS];
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Ok", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alertView.tag = TAG_SAVE;
     UITextField *filenameText = [alertView textFieldAtIndex:0];
     [alertView show];
 //    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test2"];
@@ -204,20 +208,29 @@ GLint uniforms[NUM_UNIFORMS];
 }
 
 - (IBAction)LoadSlamFromFilename:(id)sender {
-    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Filename"
                                                         message:@"Enter filename to load:"
                                                        delegate:nil
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Ok", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *filenameText = [alertView textFieldAtIndex:0];
-    [alertView show];
-    //    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test_slam_map_1"];
-    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
+    alertView.tag = TAG_LOAD;
+}
 
-//    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test2"];
-    pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    if (alertView.tag == TAG_SAVE && buttonIndex == 1) {
+        UITextField *filenameText = [alertView textFieldAtIndex:0];
+        [alertView show];
+        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
+        pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
+    } else if (alertView.tag == TAG_LOAD && buttonIndex == 1){
+        UITextField *filenameText = [alertView textFieldAtIndex:0];
+        [alertView show];
+        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
+        pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
+    }
 }
 
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate

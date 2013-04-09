@@ -17,7 +17,7 @@
 #import "PointView.h"
 //#import "GraphicsSingleton.h"
 
-@interface CameraViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate> {
+@interface CameraViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate, UIAlertViewDelegate> {
 //    PointView* pointView;
 }
 
