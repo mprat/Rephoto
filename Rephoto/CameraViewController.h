@@ -31,5 +31,6 @@
 -(void)startCapture;
 - (IBAction)SlamInitButtonPressed:(id)sender;
 - (IBAction)SameSlamButtonPressed:(id)sender;
+- (IBAction)LoadSlamFromFilename:(id)sender;
 
 @end

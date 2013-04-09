@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <string>
 #include "PointCloud.h"
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
@@ -30,10 +31,12 @@ public:
     
     void render_point_cloud();
     void save_slam_map();
+    void load_slam_filename(std::string filename);
     
 protected:
     pointcloud_matrix_4x4 projection_matrix;
 	pointcloud_matrix_4x4 camera_matrix;
+    pointcloud_matrix_4x4 camera_pose;
     GLint mvp_uniform;
     
 private:

@@ -89,6 +89,11 @@ void PointCloudProcessing::save_slam_map(){
     }
 }
 
+void PointCloudProcessing::load_slam_filename(std::string filename){
+    pointcloud_load_map("test_slam_map_1");
+    std::cout<<"loaded map from file!"<<std::endl;
+}
+
 void PointCloudProcessing::render_point_cloud(){
     //clear the color buffer bit before every time
     //TODO: do we need to clear the depth buffer every bit as well?
@@ -128,7 +133,11 @@ void PointCloudProcessing::render_point_cloud(){
 //    } else if (state == POINTCLOUD_TRACKING_IMAGES) {
 //        printf("tracking images\n");
     } else if (state == POINTCLOUD_TRACKING_SLAM_MAP){
-        std::cout<<"tracking slam map"<<std::endl;
+//        std::cout<<"tracking slam map"<<std::endl;
+        //here it is tracking the camera pose
+        camera_pose = pointcloud_get_camera_pose();
+//        Matrix4x4 cp = Matrix4x4(camera_pose.data);
+//        cp.print();
     }
 }
 

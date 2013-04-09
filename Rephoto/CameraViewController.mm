@@ -191,6 +191,10 @@ GLint uniforms[NUM_UNIFORMS];
     pointCloudProcessing->save_slam_map();
 }
 
+- (IBAction)LoadSlamFromFilename:(id)sender {
+    pointCloudProcessing->load_slam_filename("test_slam_map_1");
+}
+
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate
 -(void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
     
