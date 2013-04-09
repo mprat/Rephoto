@@ -190,18 +190,33 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (IBAction)SameSlamButtonPressed:(id)sender {
     NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Filename" message:@"Enter filename to save as:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Filename"
+                                                        message:@"Enter filename to save as:"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Ok", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *filenameText = [alertView textFieldAtIndex:0];
     [alertView show];
-//    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test_slam_map_1"];
+//    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test2"];
     NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
     pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 - (IBAction)LoadSlamFromFilename:(id)sender {
     NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test2"];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Filename"
+                                                        message:@"Enter filename to load:"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Ok", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *filenameText = [alertView textFieldAtIndex:0];
+    [alertView show];
+    //    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test_slam_map_1"];
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
+
+//    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test2"];
     pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
