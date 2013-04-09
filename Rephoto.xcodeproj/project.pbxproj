@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9805BB22171485D6009784EC /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 9805BB21171485D6009784EC /* GLProgram.m */; };
 		9806059516F92100005CDD83 /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 9806059416F92100005CDD83 /* Shader.fsh */; };
 		9806059816F9210D005CDD83 /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 9806059716F9210D005CDD83 /* Shader.vsh */; };
 		9806059916F922E5005CDD83 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 9806059416F92100005CDD83 /* Shader.fsh */; };
@@ -39,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9805BB20171485D6009784EC /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
+		9805BB21171485D6009784EC /* GLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLProgram.m; sourceTree = "<group>"; };
 		9806059416F92100005CDD83 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		9806059716F9210D005CDD83 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		982141E316E54E2D00F7388F /* libpointcloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpointcloud.a; path = ../libpointcloud_iOS/libpointcloud.a; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 			children = (
 				98A4677E17134345009186FB /* cpplinearalgebra */,
 				98423E92170B69ED0053825D /* MainStoryboard.storyboard */,
+				9805BB20171485D6009784EC /* GLProgram.h */,
+				9805BB21171485D6009784EC /* GLProgram.m */,
 				9806059416F92100005CDD83 /* Shader.fsh */,
 				9806059716F9210D005CDD83 /* Shader.vsh */,
 				983AD84A16E1689F002870E8 /* GraphicsSingleton.h */,
@@ -271,6 +276,7 @@
 				9806059816F9210D005CDD83 /* Shader.vsh in Sources */,
 				98423E8F170B635F0053825D /* PointView.mm in Sources */,
 				98A4677D17134340009186FB /* Matrix4x4.cpp in Sources */,
+				9805BB22171485D6009784EC /* GLProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

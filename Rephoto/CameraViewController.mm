@@ -189,7 +189,11 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (IBAction)SameSlamButtonPressed:(id)sender {
     NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test_slam_map_1"];
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Filename" message:@"Enter filename to save as:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+//    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+//    UITextField *filenameText = [alertView textFieldAtIndex:0];
+//    [alertView show];
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test_save_slam_map_1"];
     pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
