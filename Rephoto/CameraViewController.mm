@@ -227,6 +227,7 @@ GLint uniforms[NUM_UNIFORMS];
     if (alertView.tag == TAG_SAVE && buttonIndex == 1) {
         UITextField *filenameText = [alertView textFieldAtIndex:0];
         [alertView show];
+//        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
         NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
         NSString *imgPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
         imgPath = [imgPath stringByAppendingPathExtension:@"jpg"];
@@ -237,8 +238,7 @@ GLint uniforms[NUM_UNIFORMS];
         [alertView show];
         NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
         pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
-    }
-}
+    }}
 
 -(void)savePicture:(NSString *)jpgPath{
     AVCaptureConnection *videoConnection = nil;
@@ -258,14 +258,11 @@ GLint uniforms[NUM_UNIFORMS];
                 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 UIImage *photo = [[UIImage alloc] initWithData:imageData];
                 
-                NSLog(@"before saving image\n");
                 //save image
                 [UIImageJPEGRepresentation(photo, 1.0) writeToFile:jpgPath atomically:YES];
             }
         }];
     }
-    
-    [self printDocumentsDirectoryContent];
 }
 
 -(void) printDocumentsDirectoryContent{
