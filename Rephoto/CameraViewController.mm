@@ -143,23 +143,21 @@ GLint uniforms[NUM_UNIFORMS];
     [videooutput setSampleBufferDelegate:self queue:queue];
 //    dispatch_release(queue);
     
-    
-    
     self.captureSession = [[AVCaptureSession alloc] init];
     [self.captureSession addInput:devInput];
     [self.captureSession addOutput:videooutput];
     
     // what is this for, actually?
-//    double max_fps = 30;
-//    for(int i = 0; i < [[output connections] count]; i++) {
-//        AVCaptureConnection *conn = [[output connections] objectAtIndex:i];
-//        if (conn.supportsVideoMinFrameDuration) {
-//            conn.videoMinFrameDuration = CMTimeMake(1, max_fps);
-//        }
-//        if (conn.supportsVideoMaxFrameDuration) {
-//            conn.videoMaxFrameDuration = CMTimeMake(1, max_fps);
-//        }
-//    }
+    double max_fps = 30;
+    for(int i = 0; i < [[videooutput connections] count]; i++) {
+        AVCaptureConnection *conn = [[videooutput connections] objectAtIndex:i];
+        if (conn.supportsVideoMinFrameDuration) {
+            conn.videoMinFrameDuration = CMTimeMake(1, max_fps);
+        }
+        if (conn.supportsVideoMaxFrameDuration) {
+            conn.videoMaxFrameDuration = CMTimeMake(1, max_fps);
+        }
+    }
     
     [self.captureSession setSessionPreset: AVCaptureSessionPresetMedium];
     
