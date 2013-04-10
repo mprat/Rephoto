@@ -37,6 +37,8 @@ GLint uniforms[NUM_UNIFORMS];
     
     GLuint _program;
     GLuint _vertexBuffer;
+    
+    AVCaptureStillImageOutput *imgoutput;
 }
 @property (strong, nonatomic) EAGLContext *context;
 
@@ -143,9 +145,13 @@ GLint uniforms[NUM_UNIFORMS];
     [videooutput setSampleBufferDelegate:self queue:queue];
 //    dispatch_release(queue);
     
+    imgoutput = [[AVCaptureStillImageOutput alloc] init];
+    [imgoutput setOutputSettings:[[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG,AVVideoCodecKey,nil]];
+
     self.captureSession = [[AVCaptureSession alloc] init];
     [self.captureSession addInput:devInput];
     [self.captureSession addOutput:videooutput];
+    [self.captureSession addOutput:imgoutput];
     
     // set max frames per second
     double max_fps = 30;
@@ -222,7 +228,10 @@ GLint uniforms[NUM_UNIFORMS];
         UITextField *filenameText = [alertView textFieldAtIndex:0];
         [alertView show];
         NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
+        NSString *imgPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
+        imgPath = [imgPath stringByAppendingPathExtension:@"jpg"];
         pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
+        [self savePicture:imgPath];
     } else if (alertView.tag == TAG_LOAD && buttonIndex == 1){
         UITextField *filenameText = [alertView textFieldAtIndex:0];
         [alertView show];
@@ -231,8 +240,40 @@ GLint uniforms[NUM_UNIFORMS];
     }
 }
 
--(void)savePicture{
+-(void)savePicture:(NSString *)jpgPath{
+    AVCaptureConnection *videoConnection = nil;
+    for (AVCaptureConnection *connection in imgoutput.connections) {
+        for (AVCaptureInputPort *port in [connection inputPorts]) {
+            if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
+                videoConnection = connection;
+                break;
+            }
+        }
+        if (videoConnection) { break; }
+    }
     
+    if ( videoConnection ) {
+        [imgoutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error){
+            if (imageDataSampleBuffer != NULL){
+                NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+                UIImage *photo = [[UIImage alloc] initWithData:imageData];
+                
+                NSLog(@"before saving image\n");
+                //save image
+                [UIImageJPEGRepresentation(photo, 1.0) writeToFile:jpgPath atomically:YES];
+            }
+        }];
+    }
+    
+    [self printDocumentsDirectoryContent];
+}
+
+-(void) printDocumentsDirectoryContent{
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSError *error;
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
+
 }
 
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate
@@ -244,10 +285,6 @@ GLint uniforms[NUM_UNIFORMS];
     }
 	
     CFRetain(sampleBuffer);
-    
-    if (false){
-        [self savePicture];
-    }
     
     NSData *data = [[NSData alloc] initWithBytesNoCopy:sampleBuffer length:4 freeWhenDone:NO];
     
