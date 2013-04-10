@@ -97,7 +97,7 @@ void PointCloudProcessing::save_slam_map(std::string filename){
 
 void PointCloudProcessing::load_slam_filename(std::string filename){
     pointcloud_load_map(filename.c_str());
-    std::cout<<"loaded map from file!"<<std::endl;
+//    std::cout<<"loaded map from file!"<<std::endl;
 }
 
 void PointCloudProcessing::render_point_cloud(){

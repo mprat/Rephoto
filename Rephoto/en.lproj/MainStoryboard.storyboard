@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G56" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -15,7 +15,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1K-i6-gZT">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="113" id="7AJ-wF-HRA"/>
-                                    <constraint firstAttribute="width" constant="180" id="kip-ir-8Eb"/>
+                                    <constraint firstAttribute="width" constant="150" id="vMO-X7-hGA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Start SLAM init">
@@ -29,12 +29,12 @@
                                     <action selector="SlamInitButtonPressed:" destination="2" eventType="touchUpInside" id="LDD-R5-3TN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwq-Wa-5Xi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Rwq-Wa-5Xi">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="paN-He-FYn"/>
+                                    <constraint firstAttribute="width" constant="150" id="PwQ-gK-YX9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Save SLAM map">
+                                <state key="normal" title="Save SLAM map and take picture">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -46,8 +46,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQ6-5o-Ooj">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="A0l-80-2zm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Load test_slam_map_1">
+                                <state key="normal" title="Load SLAM map">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -61,14 +64,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Rwq-Wa-5Xi" firstAttribute="top" secondItem="L1K-i6-gZT" secondAttribute="top" type="default" id="2ab-Dm-a8X"/>
+                            <constraint firstAttribute="bottom" secondItem="Rwq-Wa-5Xi" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="2Ls-OB-PrL"/>
                             <constraint firstItem="L1K-i6-gZT" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="JB3-Hi-khf"/>
-                            <constraint firstItem="rQ6-5o-Ooj" firstAttribute="leading" secondItem="Rwq-Wa-5Xi" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="QJD-Ot-nMk"/>
+                            <constraint firstItem="Rwq-Wa-5Xi" firstAttribute="top" secondItem="L1K-i6-gZT" secondAttribute="top" type="default" id="Nxk-Lu-Gw2"/>
+                            <constraint firstItem="rQ6-5o-Ooj" firstAttribute="baseline" secondItem="L1K-i6-gZT" secondAttribute="baseline" type="default" id="OjE-7t-pHz"/>
+                            <constraint firstItem="Rwq-Wa-5Xi" firstAttribute="top" secondItem="rQ6-5o-Ooj" secondAttribute="top" type="default" id="VgF-1R-p9k"/>
+                            <constraint firstItem="Rwq-Wa-5Xi" firstAttribute="leading" secondItem="L1K-i6-gZT" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ZnT-IC-8Sz"/>
                             <constraint firstAttribute="bottom" secondItem="rQ6-5o-Ooj" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="d90-YY-HkO"/>
                             <constraint firstAttribute="bottom" secondItem="L1K-i6-gZT" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="dLZ-eH-nxl"/>
-                            <constraint firstAttribute="bottom" secondItem="Rwq-Wa-5Xi" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="ohM-mH-bQJ"/>
-                            <constraint firstItem="rQ6-5o-Ooj" firstAttribute="top" secondItem="Rwq-Wa-5Xi" secondAttribute="top" type="default" id="sNj-Iq-mo3"/>
-                            <constraint firstItem="Rwq-Wa-5Xi" firstAttribute="leading" secondItem="L1K-i6-gZT" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="yMd-v5-Y8I"/>
+                            <constraint firstItem="rQ6-5o-Ooj" firstAttribute="leading" secondItem="Rwq-Wa-5Xi" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="r37-K0-Ww5"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -77,6 +81,22 @@
             <point key="canvasLocation" x="13" y="109"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CameraViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CameraViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="LoadSlamFromFilename:"/>
+                <relationship kind="action" name="SameSlamButtonPressed:"/>
+                <relationship kind="action" name="SlamInitButtonPressed:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PointView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PointView.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
