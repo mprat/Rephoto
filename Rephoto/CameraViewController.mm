@@ -147,7 +147,7 @@ GLint uniforms[NUM_UNIFORMS];
     [self.captureSession addInput:devInput];
     [self.captureSession addOutput:videooutput];
     
-    // what is this for, actually?
+    // set max frames per second
     double max_fps = 30;
     for(int i = 0; i < [[videooutput connections] count]; i++) {
         AVCaptureConnection *conn = [[videooutput connections] objectAtIndex:i];
@@ -231,6 +231,10 @@ GLint uniforms[NUM_UNIFORMS];
     }
 }
 
+-(void)savePicture{
+    
+}
+
 // method to process frames, from AVCaptureVideoDataOutputSampleBufferDelegate
 -(void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
     
@@ -240,6 +244,10 @@ GLint uniforms[NUM_UNIFORMS];
     }
 	
     CFRetain(sampleBuffer);
+    
+    if (false){
+        [self savePicture];
+    }
     
     NSData *data = [[NSData alloc] initWithBytesNoCopy:sampleBuffer length:4 freeWhenDone:NO];
     
