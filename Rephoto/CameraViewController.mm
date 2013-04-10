@@ -131,24 +131,23 @@ GLint uniforms[NUM_UNIFORMS];
 		NSLog(@"Device is nil");
 	}
 	
-	AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
-    output.alwaysDiscardsLateVideoFrames = YES;
-    
+	AVCaptureVideoDataOutput *videooutput = [[AVCaptureVideoDataOutput alloc] init];
+    videooutput.alwaysDiscardsLateVideoFrames = YES;
     NSMutableDictionary *videoSettings = [[NSMutableDictionary alloc] init];
-    
     [videoSettings setValue:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA] forKey:(NSString*) kCVPixelBufferPixelFormatTypeKey];
-    
-	[output setVideoSettings:videoSettings];
+	[videooutput setVideoSettings:videoSettings];
     
     /*We create a serial queue to handle the processing of our frames*/
     dispatch_queue_t queue;
     queue = dispatch_queue_create("cameraQueue", NULL);
-    [output setSampleBufferDelegate:self queue:queue];
+    [videooutput setSampleBufferDelegate:self queue:queue];
 //    dispatch_release(queue);
+    
+    
     
     self.captureSession = [[AVCaptureSession alloc] init];
     [self.captureSession addInput:devInput];
-    [self.captureSession addOutput:output];
+    [self.captureSession addOutput:videooutput];
     
     // what is this for, actually?
 //    double max_fps = 30;
