@@ -192,29 +192,30 @@ GLint uniforms[NUM_UNIFORMS];
 }
 
 - (IBAction)SameSlamButtonPressed:(id)sender {
-    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Filename"
                                                         message:@"Enter filename to save as:"
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Ok", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     alertView.tag = TAG_SAVE;
-    UITextField *filenameText = [alertView textFieldAtIndex:0];
+//    UITextField *filenameText = [alertView textFieldAtIndex:0];
     [alertView show];
-//    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test2"];
-    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
-    pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
+////    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:@"test2"];
+//    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
+//    pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 - (IBAction)LoadSlamFromFilename:(id)sender {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Filename"
                                                         message:@"Enter filename to load:"
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Ok", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     alertView.tag = TAG_LOAD;
+    [alertView show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

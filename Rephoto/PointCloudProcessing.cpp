@@ -134,6 +134,7 @@ void PointCloudProcessing::render_point_cloud(){
             }
             
             //TODO: add points to the buffer (_vertexBuffer in the graphicsSingleton...)?
+            glBufferData(GL_ARRAY_BUFFER, 3*sizeof(float)*5012, NULL, GL_DYNAMIC_DRAW);
             glBufferData(GL_ARRAY_BUFFER, 3*sizeof(float)*(std::min(5012, (int)points->size)), (float *)points->points, GL_DYNAMIC_DRAW);
             glEnableVertexAttribArray(ATTRIB_POINTPOS);
             glDrawArrays(GL_POINTS, 0, points->size);
