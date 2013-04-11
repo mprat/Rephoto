@@ -37,6 +37,8 @@
 		98B598A016E5654A007BF4C3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B5989F16E5654A007BF4C3 /* Accelerate.framework */; };
 		98B598A216E56553007BF4C3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B598A116E56553007BF4C3 /* OpenGLES.framework */; };
 		98F05ABE1717608E0037FE5B /* Matrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F05AB81717608E0037FE5B /* Matrix4x4.cpp */; };
+		98F05AC3171761FB0037FE5B /* Pose.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F05AC1171761FB0037FE5B /* Pose.cpp */; };
+		98F05AC6171762C50037FE5B /* Vector3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F05AC4171762C50037FE5B /* Vector3D.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +81,10 @@
 		98B598A116E56553007BF4C3 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		98F05AB81717608E0037FE5B /* Matrix4x4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4x4.cpp; sourceTree = "<group>"; };
 		98F05AB91717608E0037FE5B /* Matrix4x4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4x4.h; sourceTree = "<group>"; };
+		98F05AC1171761FB0037FE5B /* Pose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pose.cpp; sourceTree = "<group>"; };
+		98F05AC2171761FB0037FE5B /* Pose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pose.h; sourceTree = "<group>"; };
+		98F05AC4171762C50037FE5B /* Vector3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3D.cpp; sourceTree = "<group>"; };
+		98F05AC5171762C50037FE5B /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,10 @@
 		98F05AB51717608E0037FE5B /* cpplinearalgebra */ = {
 			isa = PBXGroup;
 			children = (
+				98F05AC4171762C50037FE5B /* Vector3D.cpp */,
+				98F05AC5171762C50037FE5B /* Vector3D.h */,
+				98F05AC1171761FB0037FE5B /* Pose.cpp */,
+				98F05AC2171761FB0037FE5B /* Pose.h */,
 				98F05AB81717608E0037FE5B /* Matrix4x4.cpp */,
 				98F05AB91717608E0037FE5B /* Matrix4x4.h */,
 			);
@@ -277,6 +287,8 @@
 				98423E8F170B635F0053825D /* PointView.mm in Sources */,
 				9805BB22171485D6009784EC /* GLProgram.m in Sources */,
 				98F05ABE1717608E0037FE5B /* Matrix4x4.cpp in Sources */,
+				98F05AC3171761FB0037FE5B /* Pose.cpp in Sources */,
+				98F05AC6171762C50037FE5B /* Vector3D.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

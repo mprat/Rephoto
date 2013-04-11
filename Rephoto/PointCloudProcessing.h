@@ -16,6 +16,7 @@
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
 #include "Matrix4x4.h"
+#include "Pose.h"
 
 class PointCloudProcessing {
 public:
