@@ -229,19 +229,19 @@ GLint uniforms[NUM_UNIFORMS];
         [alertView show];
 //        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
         NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
-        NSString *imgPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
-        imgPath = [imgPath stringByAppendingPathExtension:@"jpg"];
         pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
-        [self savePicture:imgPath];
+        [self savePicture:filenameText.text];
     } else if (alertView.tag == TAG_LOAD && buttonIndex == 1){
         UITextField *filenameText = [alertView textFieldAtIndex:0];
         [alertView show];
         NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
         pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
+        [self readCameraPoseFromMapname:filenameText.text];
     }}
 
--(void)savePicture:(NSString *)jpgPath{
+-(void)savePicture:(NSString *)mapname{
     AVCaptureConnection *videoConnection = nil;
+    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
     for (AVCaptureConnection *connection in imgoutput.connections) {
         for (AVCaptureInputPort *port in [connection inputPorts]) {
             if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
@@ -257,12 +257,47 @@ GLint uniforms[NUM_UNIFORMS];
             if (imageDataSampleBuffer != NULL){
                 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 UIImage *photo = [[UIImage alloc] initWithData:imageData];
+
+                [self getAndSaveCameraPose:mapname];
+                
+                NSString *jpgPath = [[documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:mapname]] stringByAppendingPathExtension:@"jpg"];
                 
                 //save image
                 [UIImageJPEGRepresentation(photo, 1.0) writeToFile:jpgPath atomically:YES];
             }
         }];
     }
+}
+
+-(void) getAndSaveCameraPose:(NSString *)mapname{
+    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    //get and save camera pose matrix
+    pointcloud_matrix_4x4 camera_pose = pointcloud_get_camera_pose();
+    Matrix4x4 cp = Matrix4x4(camera_pose.data);
+//    std::cout<<"saving camera pose"<<std::endl;
+//    cp.print();
+    NSString *posePath = [[documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:mapname]] stringByAppendingPathExtension:@"txt"];
+    NSString *content = [NSString stringWithFormat:@"%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f", cp.values[0], cp.values[1], cp.values[2], cp.values[3], cp.values[4], cp.values[5], cp.values[6], cp.values[7], cp.values[8], cp.values[9], cp.values[10], cp.values[11], cp.values[12], cp.values[13], cp.values[14], cp.values[15]];
+    [content writeToFile:posePath
+              atomically:YES
+                encoding:NSStringEncodingConversionAllowLossy error:nil];
+}
+
+-(Matrix4x4) readCameraPoseFromMapname:(NSString *)mapname{
+    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *posePath = [[documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:mapname]] stringByAppendingPathExtension:@"txt"];
+    NSString *poseContent = [[NSString alloc] initWithContentsOfFile:posePath
+                                                    usedEncoding:nil
+                                                           error:nil];
+    NSArray *poseFloatVals = [poseContent componentsSeparatedByString:@":"];
+    float poseVals[16];
+    for (int i = 0; i < 16; i++){
+        poseVals[i] = [poseFloatVals[i] floatValue];
+    }
+    Matrix4x4 readCP = Matrix4x4(poseVals);
+//    std::cout<<"reading camera pose"<<std::endl;
+//    readCP.print();
+    return readCP;
 }
 
 -(void) printDocumentsDirectoryContent{

@@ -155,6 +155,10 @@ void PointCloudProcessing::render_point_cloud(){
 //    }
 }
 
+pointcloud_matrix_4x4 PointCloudProcessing::getCameraPose(){
+    return pointcloud_get_camera_pose();
+}
+
 void PointCloudProcessing::frame_process(char *data, double timestamp){
     pointcloud_on_camera_frame(data, timestamp);
     

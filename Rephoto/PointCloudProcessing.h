@@ -32,6 +32,7 @@ public:
     void render_point_cloud();
     void save_slam_map(std::string filename);
     void load_slam_filename(std::string filename);
+    pointcloud_matrix_4x4 getCameraPose();
     
 protected:
     pointcloud_matrix_4x4 projection_matrix;
