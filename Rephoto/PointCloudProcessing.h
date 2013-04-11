@@ -26,7 +26,6 @@ public:
 	void on_device_motion_update(float x, float y, float z, float rot_x, float rot_y, float rot_z, float g_x, float g_y, float g_z, double timestamp);
     
     void frame_process(char *data, double timestamp);
-    bool start_match_to_image();
     bool start_slam();
     
     void render_point_cloud();
@@ -43,6 +42,7 @@ protected:
 private:
     void setup_graphics();
     GLuint program;
+    bool aligning_to_old;
 };
 
 #endif /* defined(__Rephoto__PointCloudProcessing__) */

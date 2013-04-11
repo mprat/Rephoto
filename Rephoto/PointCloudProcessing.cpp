@@ -36,6 +36,7 @@ PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_heig
 
     setup_graphics();
     program = prog;
+    aligning_to_old = false;
 }
 
 PointCloudProcessing::~PointCloudProcessing(){
@@ -55,17 +56,6 @@ void PointCloudProcessing::on_accelerometer_update(float x, float y, float z, do
 
 void PointCloudProcessing::on_device_motion_update(float x, float y, float z, float rot_x, float rot_y, float rot_z, float g_x, float g_y, float g_z, double timestamp){
     pointcloud_on_device_motion_update(x, y, z, rot_x, rot_y, rot_z, g_x, g_y, g_x, timestamp);
-}
-
-//method for starting the point-cloud process of localizing to an image
-//TODO: either get rid of or use this for something else
-bool PointCloudProcessing::start_match_to_image(){
-    printf("Activating image target\n");
-    pointcloud_reset();
-    //TODO: figure out if we need this next line
-    pointcloud_enable_map_expansion();
-    pointcloud_activate_image_target("image_2");
-    return true;
 }
 
 //method for starting slam map creation
@@ -98,6 +88,8 @@ void PointCloudProcessing::save_slam_map(std::string filename){
 void PointCloudProcessing::load_slam_filename(std::string filename){
     pointcloud_load_map(filename.c_str());
 //    std::cout<<"loaded map from file!"<<std::endl;
+    
+    aligning_to_old = true;
 }
 
 void PointCloudProcessing::set_desired_camera_pose(Matrix4x4 pose){
