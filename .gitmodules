@@ -1,0 +1,3 @@
+[submodule "Rephoto/cpplinearalgebra"]
+	path = Rephoto/cpplinearalgebra
+	url = https://github.com/mprat/cpplinearalgebra.git
