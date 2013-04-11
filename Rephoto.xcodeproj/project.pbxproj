@@ -36,11 +36,7 @@
 		98A4678317134E72009186FB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98423E92170B69ED0053825D /* MainStoryboard.storyboard */; };
 		98B598A016E5654A007BF4C3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B5989F16E5654A007BF4C3 /* Accelerate.framework */; };
 		98B598A216E56553007BF4C3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B598A116E56553007BF4C3 /* OpenGLES.framework */; };
-		98F05ABC1717608E0037FE5B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 98F05AB61717608E0037FE5B /* .gitignore */; };
-		98F05ABD1717608E0037FE5B /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 98F05AB71717608E0037FE5B /* Makefile */; };
 		98F05ABE1717608E0037FE5B /* Matrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F05AB81717608E0037FE5B /* Matrix4x4.cpp */; };
-		98F05ABF1717608E0037FE5B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 98F05ABA1717608E0037FE5B /* README.md */; };
-		98F05AC01717608E0037FE5B /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F05ABB1717608E0037FE5B /* test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,12 +77,8 @@
 		9891EA6616E0172A00834E74 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		98B5989F16E5654A007BF4C3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		98B598A116E56553007BF4C3 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		98F05AB61717608E0037FE5B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		98F05AB71717608E0037FE5B /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		98F05AB81717608E0037FE5B /* Matrix4x4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4x4.cpp; sourceTree = "<group>"; };
 		98F05AB91717608E0037FE5B /* Matrix4x4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4x4.h; sourceTree = "<group>"; };
-		98F05ABA1717608E0037FE5B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		98F05ABB1717608E0037FE5B /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,12 +190,8 @@
 		98F05AB51717608E0037FE5B /* cpplinearalgebra */ = {
 			isa = PBXGroup;
 			children = (
-				98F05AB61717608E0037FE5B /* .gitignore */,
-				98F05AB71717608E0037FE5B /* Makefile */,
 				98F05AB81717608E0037FE5B /* Matrix4x4.cpp */,
 				98F05AB91717608E0037FE5B /* Matrix4x4.h */,
-				98F05ABA1717608E0037FE5B /* README.md */,
-				98F05ABB1717608E0037FE5B /* test.cpp */,
 			);
 			path = cpplinearalgebra;
 			sourceTree = "<group>";
@@ -269,8 +257,6 @@
 				984EE9D216DD2D7F00BD24D5 /* Default-568h@2x.png in Resources */,
 				9890D57016F8D8EB00EAC19E /* image_target_2.jpg in Resources */,
 				9890D57116F8D8EB00EAC19E /* image_target_2.model in Resources */,
-				98F05ABC1717608E0037FE5B /* .gitignore in Resources */,
-				98F05ABF1717608E0037FE5B /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,9 +276,7 @@
 				9806059816F9210D005CDD83 /* Shader.vsh in Sources */,
 				98423E8F170B635F0053825D /* PointView.mm in Sources */,
 				9805BB22171485D6009784EC /* GLProgram.m in Sources */,
-				98F05ABD1717608E0037FE5B /* Makefile in Sources */,
 				98F05ABE1717608E0037FE5B /* Matrix4x4.cpp in Sources */,
-				98F05AC01717608E0037FE5B /* test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
