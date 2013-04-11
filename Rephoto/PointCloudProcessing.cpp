@@ -100,6 +100,12 @@ void PointCloudProcessing::load_slam_filename(std::string filename){
 //    std::cout<<"loaded map from file!"<<std::endl;
 }
 
+void PointCloudProcessing::set_desired_camera_pose(Matrix4x4 pose){
+    desired_camera_pose = Matrix4x4(pose);
+//    std::cout<<"desired camera pose"<<std::endl;
+//    desired_camera_pose.print();
+}
+
 void PointCloudProcessing::render_point_cloud(){
     //clear the color buffer bit before every time
     //TODO: do we need to clear the depth buffer every bit as well?
@@ -114,6 +120,7 @@ void PointCloudProcessing::render_point_cloud(){
         
         pointcloud_point_cloud* points = pointcloud_get_points();
         
+        //if points is valid, display them
         if (points) {
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_SRC_ALPHA);
@@ -155,10 +162,6 @@ void PointCloudProcessing::render_point_cloud(){
 //    }
 }
 
-pointcloud_matrix_4x4 PointCloudProcessing::getCameraPose(){
-    return pointcloud_get_camera_pose();
-}
-
 void PointCloudProcessing::frame_process(char *data, double timestamp){
     pointcloud_on_camera_frame(data, timestamp);
     
@@ -172,6 +175,9 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
 //    Matrix4x4 pm = Matrix4x4(projection_matrix.data);
 //    std::cout<<"projection matrix"<<std::endl;
 //    pm.print();
+    
+    pointcloud_matrix_4x4 ccp = pointcloud_get_camera_pose();
+    current_camera_pose = Matrix4x4(ccp.data);
 
 //    render_point_cloud();
 }

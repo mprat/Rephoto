@@ -236,7 +236,7 @@ GLint uniforms[NUM_UNIFORMS];
         [alertView show];
         NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
         pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
-        [self readCameraPoseFromMapname:filenameText.text];
+        [self loadDesiredCameraPose:[self readCameraPoseFromMapname:filenameText.text]];
     }}
 
 -(void)savePicture:(NSString *)mapname{
@@ -298,6 +298,10 @@ GLint uniforms[NUM_UNIFORMS];
 //    std::cout<<"reading camera pose"<<std::endl;
 //    readCP.print();
     return readCP;
+}
+
+-(void) loadDesiredCameraPose:(Matrix4x4)fromMatrix{
+    pointCloudProcessing->set_desired_camera_pose(fromMatrix);
 }
 
 -(void) printDocumentsDirectoryContent{
