@@ -171,5 +171,8 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
     pointcloud_matrix_4x4 ccp = pointcloud_get_camera_pose();
     current_camera_pose = Matrix4x4(ccp.data);
 
-//    render_point_cloud();
+    if (aligning_to_old){
+        // compute arrow transformation
+        
+    }
 }
