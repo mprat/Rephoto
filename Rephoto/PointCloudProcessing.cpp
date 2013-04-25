@@ -94,10 +94,13 @@ void PointCloudProcessing::load_slam_filename(std::string filename){
 
 void PointCloudProcessing::set_desired_camera_pose(Matrix4x4 pose){
     desired_camera_pose = Pose(pose);
+    desired_object_loc = desired_camera_pose.getObjectLocation();
     
     //debug POSE
-    std::cout<<"desired camera pose"<<std::endl;
-    desired_camera_pose.print();
+//    std::cout<<"desired camera pose"<<std::endl;
+//    desired_camera_pose.print();
+    std::cout<<"desired object location"<<std::endl;
+    desired_object_loc.print();
 }
 
 void PointCloudProcessing::start_align(){
@@ -186,7 +189,12 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
     if (aligning_to_old){
         // compute arrow transformation
         
-        std::cout<<"current camera pose"<<std::endl;
-        current_camera_pose.print();
+        //difference between object location
+        Vector3D current_object_loc = current_camera_pose.getObjectLocation();
+        std::cout<<"current object loc"<<std::endl;
+        current_object_loc.print();
+        
+//        std::cout<<"current camera pose"<<std::endl;
+//        current_camera_pose.print();
     }
 }

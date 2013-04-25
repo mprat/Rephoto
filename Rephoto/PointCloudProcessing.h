@@ -40,6 +40,7 @@ protected:
 	pointcloud_matrix_4x4 camera_matrix;
     Pose current_camera_pose;
     Pose desired_camera_pose;
+    Vector3D desired_object_loc;
     
 private:
     void setup_graphics();
