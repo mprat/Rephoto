@@ -93,9 +93,17 @@ void PointCloudProcessing::load_slam_filename(std::string filename){
 }
 
 void PointCloudProcessing::set_desired_camera_pose(Matrix4x4 pose){
-    desired_camera_pose = Matrix4x4(pose);
-//    std::cout<<"desired camera pose"<<std::endl;
-//    desired_camera_pose.print();
+    desired_camera_pose = Pose(pose);
+    
+    //debug POSE
+    std::cout<<"desired camera pose"<<std::endl;
+    desired_camera_pose.print();
+}
+
+void PointCloudProcessing::start_align(){
+    aligning_to_old = true;
+    
+    //TODO: start printing commands?
 }
 
 void PointCloudProcessing::render_point_cloud(){
@@ -169,10 +177,16 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
 //    pm.print();
     
     pointcloud_matrix_4x4 ccp = pointcloud_get_camera_pose();
-    current_camera_pose = Matrix4x4(ccp.data);
+    Matrix4x4 current_camera_pose_mat = Matrix4x4(ccp.data);
+    Pose current_camera_pose = Pose(current_camera_pose_mat);
+    
+//    std::cout<<"current camera pose"<<std::endl;
+//    current_camera_pose.print();
 
     if (aligning_to_old){
         // compute arrow transformation
         
+        std::cout<<"current camera pose"<<std::endl;
+        current_camera_pose.print();
     }
 }

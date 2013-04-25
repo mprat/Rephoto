@@ -237,6 +237,8 @@ GLint uniforms[NUM_UNIFORMS];
         NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
         pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
         [self loadDesiredCameraPose:[self readCameraPoseFromMapname:filenameText.text]];
+        
+        pointCloudProcessing->start_align();
     }}
 
 -(void)savePicture:(NSString *)mapname{
@@ -274,8 +276,12 @@ GLint uniforms[NUM_UNIFORMS];
     //get and save camera pose matrix
     pointcloud_matrix_4x4 camera_pose = pointcloud_get_camera_pose();
     Matrix4x4 cp = Matrix4x4(camera_pose.data);
+    Pose pose_to_save = Pose(cp);
+    
+    //debug POSE
 //    std::cout<<"saving camera pose"<<std::endl;
-//    cp.print();
+//    pose_to_save.print();
+    
     NSString *posePath = [[documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:mapname]] stringByAppendingPathExtension:@"txt"];
     NSString *content = [NSString stringWithFormat:@"%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f:%f", cp.values[0], cp.values[1], cp.values[2], cp.values[3], cp.values[4], cp.values[5], cp.values[6], cp.values[7], cp.values[8], cp.values[9], cp.values[10], cp.values[11], cp.values[12], cp.values[13], cp.values[14], cp.values[15]];
     [content writeToFile:posePath
@@ -295,8 +301,11 @@ GLint uniforms[NUM_UNIFORMS];
         poseVals[i] = [poseFloatVals[i] floatValue];
     }
     Matrix4x4 readCP = Matrix4x4(poseVals);
+    Pose readCP_pose = Pose(readCP);
+    
+    //debug POSE
 //    std::cout<<"reading camera pose"<<std::endl;
-//    readCP.print();
+//    readCP_pose.print();
     return readCP;
 }
 

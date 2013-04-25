@@ -7,70 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9805BB22171485D6009784EC /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 9805BB21171485D6009784EC /* GLProgram.m */; };
-		9806059516F92100005CDD83 /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 9806059416F92100005CDD83 /* Shader.fsh */; };
-		9806059816F9210D005CDD83 /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 9806059716F9210D005CDD83 /* Shader.vsh */; };
-		9806059916F922E5005CDD83 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 9806059416F92100005CDD83 /* Shader.fsh */; };
-		9806059A16F922E5005CDD83 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 9806059716F9210D005CDD83 /* Shader.vsh */; };
+		981AAF60172871DF0016146A /* CameraAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF4B172871DF0016146A /* CameraAppDelegate.mm */; };
+		981AAF61172871DF0016146A /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF4D172871DF0016146A /* CameraViewController.mm */; };
+		981AAF62172871DF0016146A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 981AAF4F172871DF0016146A /* InfoPlist.strings */; };
+		981AAF63172871DF0016146A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981AAF51172871DF0016146A /* MainStoryboard.storyboard */; };
+		981AAF64172871DF0016146A /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF54172871DF0016146A /* GLProgram.m */; };
+		981AAF65172871DF0016146A /* GraphicsSingleton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF56172871DF0016146A /* GraphicsSingleton.mm */; };
+		981AAF66172871DF0016146A /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF57172871DF0016146A /* main.mm */; };
+		981AAF67172871DF0016146A /* PointCloudProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF58172871DF0016146A /* PointCloudProcessing.cpp */; };
+		981AAF68172871DF0016146A /* PointView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF5B172871DF0016146A /* PointView.mm */; };
+		981AAF69172871DF0016146A /* Rephoto-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981AAF5C172871DF0016146A /* Rephoto-Info.plist */; };
+		981AAF6A172871DF0016146A /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF5E172871DF0016146A /* Shader.fsh */; };
+		981AAF6B172871DF0016146A /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF5F172871DF0016146A /* Shader.vsh */; };
+		981AAF831728740B0016146A /* Matrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF811728740B0016146A /* Matrix4x4.cpp */; };
+		981AAF90172875080016146A /* Pose.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF8E172875080016146A /* Pose.cpp */; };
+		981AAF93172878350016146A /* Vector3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF91172878350016146A /* Vector3D.cpp */; };
+		981AAF96172878420016146A /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 981AAF94172878420016146A /* Quaternion.cpp */; };
 		982141E416E54E2D00F7388F /* libpointcloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 982141E316E54E2D00F7388F /* libpointcloud.a */; };
-		983AD84916E16349002870E8 /* PointCloudProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 983AD84716E16349002870E8 /* PointCloudProcessing.cpp */; };
-		983AD84C16E1689F002870E8 /* GraphicsSingleton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */; };
 		983AD86F16E1700A002870E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983AD86E16E1700A002870E8 /* QuartzCore.framework */; };
-		98423E8F170B635F0053825D /* PointView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98423E8E170B635F0053825D /* PointView.mm */; };
 		984EE9BC16DD2D7F00BD24D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BB16DD2D7F00BD24D5 /* UIKit.framework */; };
 		984EE9BE16DD2D7F00BD24D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BD16DD2D7F00BD24D5 /* Foundation.framework */; };
 		984EE9C016DD2D7F00BD24D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984EE9BF16DD2D7F00BD24D5 /* CoreGraphics.framework */; };
-		984EE9C616DD2D7F00BD24D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9C416DD2D7F00BD24D5 /* InfoPlist.strings */; };
-		984EE9C816DD2D7F00BD24D5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9C716DD2D7F00BD24D5 /* main.mm */; };
-		984EE9CC16DD2D7F00BD24D5 /* CameraAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.mm */; };
-		984EE9CE16DD2D7F00BD24D5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9CD16DD2D7F00BD24D5 /* Default.png */; };
-		984EE9D016DD2D7F00BD24D5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9CF16DD2D7F00BD24D5 /* Default@2x.png */; };
-		984EE9D216DD2D7F00BD24D5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 984EE9D116DD2D7F00BD24D5 /* Default-568h@2x.png */; };
-		984EE9D816DD2D7F00BD24D5 /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */; };
 		9890D57016F8D8EB00EAC19E /* image_target_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9890D56E16F8D8EB00EAC19E /* image_target_2.jpg */; };
 		9890D57116F8D8EB00EAC19E /* image_target_2.model in Resources */ = {isa = PBXBuildFile; fileRef = 9890D56F16F8D8EB00EAC19E /* image_target_2.model */; };
 		9891EA6116E0118700834E74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6016E0118700834E74 /* AVFoundation.framework */; };
 		9891EA6316E0126800834E74 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6216E0126800834E74 /* CoreMedia.framework */; };
 		9891EA6516E0126F00834E74 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6416E0126F00834E74 /* CoreVideo.framework */; };
 		9891EA6716E0172A00834E74 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9891EA6616E0172A00834E74 /* CoreMotion.framework */; };
-		98A4678317134E72009186FB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98423E92170B69ED0053825D /* MainStoryboard.storyboard */; };
 		98B598A016E5654A007BF4C3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B5989F16E5654A007BF4C3 /* Accelerate.framework */; };
 		98B598A216E56553007BF4C3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B598A116E56553007BF4C3 /* OpenGLES.framework */; };
-		98F05ABE1717608E0037FE5B /* Matrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F05AB81717608E0037FE5B /* Matrix4x4.cpp */; };
-		98F05AC3171761FB0037FE5B /* Pose.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F05AC1171761FB0037FE5B /* Pose.cpp */; };
-		98F05AC6171762C50037FE5B /* Vector3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F05AC4171762C50037FE5B /* Vector3D.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9805BB20171485D6009784EC /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
-		9805BB21171485D6009784EC /* GLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLProgram.m; sourceTree = "<group>"; };
-		9806059416F92100005CDD83 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
-		9806059716F9210D005CDD83 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		981AAF4A172871DF0016146A /* CameraAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraAppDelegate.h; path = Rephoto/CameraAppDelegate.h; sourceTree = "<group>"; };
+		981AAF4B172871DF0016146A /* CameraAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CameraAppDelegate.mm; path = Rephoto/CameraAppDelegate.mm; sourceTree = "<group>"; };
+		981AAF4C172871DF0016146A /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = Rephoto/CameraViewController.h; sourceTree = "<group>"; };
+		981AAF4D172871DF0016146A /* CameraViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CameraViewController.mm; path = Rephoto/CameraViewController.mm; sourceTree = "<group>"; };
+		981AAF50172871DF0016146A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		981AAF52172871DF0016146A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		981AAF53172871DF0016146A /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLProgram.h; path = Rephoto/GLProgram.h; sourceTree = "<group>"; };
+		981AAF54172871DF0016146A /* GLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLProgram.m; path = Rephoto/GLProgram.m; sourceTree = "<group>"; };
+		981AAF55172871DF0016146A /* GraphicsSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GraphicsSingleton.h; path = Rephoto/GraphicsSingleton.h; sourceTree = "<group>"; };
+		981AAF56172871DF0016146A /* GraphicsSingleton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GraphicsSingleton.mm; path = Rephoto/GraphicsSingleton.mm; sourceTree = "<group>"; };
+		981AAF57172871DF0016146A /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = Rephoto/main.mm; sourceTree = "<group>"; };
+		981AAF58172871DF0016146A /* PointCloudProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PointCloudProcessing.cpp; path = Rephoto/PointCloudProcessing.cpp; sourceTree = "<group>"; };
+		981AAF59172871DF0016146A /* PointCloudProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointCloudProcessing.h; path = Rephoto/PointCloudProcessing.h; sourceTree = "<group>"; };
+		981AAF5A172871DF0016146A /* PointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointView.h; path = Rephoto/PointView.h; sourceTree = "<group>"; };
+		981AAF5B172871DF0016146A /* PointView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PointView.mm; path = Rephoto/PointView.mm; sourceTree = "<group>"; };
+		981AAF5C172871DF0016146A /* Rephoto-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Rephoto-Info.plist"; path = "Rephoto/Rephoto-Info.plist"; sourceTree = "<group>"; };
+		981AAF5D172871DF0016146A /* Rephoto-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Rephoto-Prefix.pch"; path = "Rephoto/Rephoto-Prefix.pch"; sourceTree = "<group>"; };
+		981AAF5E172871DF0016146A /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Rephoto/Shader.fsh; sourceTree = "<group>"; };
+		981AAF5F172871DF0016146A /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Rephoto/Shader.vsh; sourceTree = "<group>"; };
+		981AAF811728740B0016146A /* Matrix4x4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix4x4.cpp; path = Rephoto/cpplinearalgebra/Matrix4x4.cpp; sourceTree = "<group>"; };
+		981AAF821728740B0016146A /* Matrix4x4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Matrix4x4.h; path = Rephoto/cpplinearalgebra/Matrix4x4.h; sourceTree = "<group>"; };
+		981AAF8E172875080016146A /* Pose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Pose.cpp; path = Rephoto/cpplinearalgebra/Pose.cpp; sourceTree = "<group>"; };
+		981AAF8F172875080016146A /* Pose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pose.h; path = Rephoto/cpplinearalgebra/Pose.h; sourceTree = "<group>"; };
+		981AAF91172878350016146A /* Vector3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector3D.cpp; path = Rephoto/cpplinearalgebra/Vector3D.cpp; sourceTree = "<group>"; };
+		981AAF92172878350016146A /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3D.h; path = Rephoto/cpplinearalgebra/Vector3D.h; sourceTree = "<group>"; };
+		981AAF94172878420016146A /* Quaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Quaternion.cpp; path = Rephoto/cpplinearalgebra/Quaternion.cpp; sourceTree = "<group>"; };
+		981AAF95172878420016146A /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quaternion.h; path = Rephoto/cpplinearalgebra/Quaternion.h; sourceTree = "<group>"; };
+		981AAF9717287C7F0016146A /* cpplinearalgebra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cpplinearalgebra.h; path = Rephoto/cpplinearalgebra/cpplinearalgebra.h; sourceTree = "<group>"; };
 		982141E316E54E2D00F7388F /* libpointcloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpointcloud.a; path = ../libpointcloud_iOS/libpointcloud.a; sourceTree = "<group>"; };
-		983AD84716E16349002870E8 /* PointCloudProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointCloudProcessing.cpp; sourceTree = "<group>"; };
-		983AD84816E16349002870E8 /* PointCloudProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointCloudProcessing.h; sourceTree = "<group>"; };
-		983AD84A16E1689F002870E8 /* GraphicsSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsSingleton.h; sourceTree = "<group>"; };
-		983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GraphicsSingleton.mm; sourceTree = "<group>"; };
 		983AD86C16E16BB1002870E8 /* PointCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointCloud.h; path = ../libpointcloud_iOS/PointCloud.h; sourceTree = "<group>"; };
 		983AD86E16E1700A002870E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		98423E8D170B635F0053825D /* PointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointView.h; sourceTree = "<group>"; };
-		98423E8E170B635F0053825D /* PointView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PointView.mm; sourceTree = "<group>"; };
-		98423E93170B69ED0053825D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = Rephoto/en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		984EE9B716DD2D7F00BD24D5 /* Rephoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rephoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		984EE9BB16DD2D7F00BD24D5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		984EE9BD16DD2D7F00BD24D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		984EE9BF16DD2D7F00BD24D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		984EE9C316DD2D7F00BD24D5 /* Rephoto-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rephoto-Info.plist"; sourceTree = "<group>"; };
-		984EE9C516DD2D7F00BD24D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		984EE9C716DD2D7F00BD24D5 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		984EE9C916DD2D7F00BD24D5 /* Rephoto-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rephoto-Prefix.pch"; sourceTree = "<group>"; };
-		984EE9CA16DD2D7F00BD24D5 /* CameraAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraAppDelegate.h; sourceTree = "<group>"; };
-		984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraAppDelegate.mm; sourceTree = "<group>"; };
-		984EE9CD16DD2D7F00BD24D5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		984EE9CF16DD2D7F00BD24D5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		984EE9D116DD2D7F00BD24D5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		984EE9D616DD2D7F00BD24D5 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraViewController.mm; sourceTree = "<group>"; };
 		9890D56E16F8D8EB00EAC19E /* image_target_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_target_2.jpg; sourceTree = "<group>"; };
 		9890D56F16F8D8EB00EAC19E /* image_target_2.model */ = {isa = PBXFileReference; lastKnownFileType = file; path = image_target_2.model; sourceTree = "<group>"; };
 		9891EA6016E0118700834E74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -79,12 +82,6 @@
 		9891EA6616E0172A00834E74 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		98B5989F16E5654A007BF4C3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		98B598A116E56553007BF4C3 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		98F05AB81717608E0037FE5B /* Matrix4x4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4x4.cpp; sourceTree = "<group>"; };
-		98F05AB91717608E0037FE5B /* Matrix4x4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4x4.h; sourceTree = "<group>"; };
-		98F05AC1171761FB0037FE5B /* Pose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pose.cpp; sourceTree = "<group>"; };
-		98F05AC2171761FB0037FE5B /* Pose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pose.h; sourceTree = "<group>"; };
-		98F05AC4171762C50037FE5B /* Vector3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3D.cpp; sourceTree = "<group>"; };
-		98F05AC5171762C50037FE5B /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,13 +106,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		981AAF4E172871DF0016146A /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				981AAF4F172871DF0016146A /* InfoPlist.strings */,
+				981AAF51172871DF0016146A /* MainStoryboard.storyboard */,
+			);
+			name = en.lproj;
+			path = Rephoto/en.lproj;
+			sourceTree = "<group>";
+		};
+		981AAF84172874130016146A /* cpplinearalgebra */ = {
+			isa = PBXGroup;
+			children = (
+				981AAF9717287C7F0016146A /* cpplinearalgebra.h */,
+				981AAF94172878420016146A /* Quaternion.cpp */,
+				981AAF95172878420016146A /* Quaternion.h */,
+				981AAF91172878350016146A /* Vector3D.cpp */,
+				981AAF92172878350016146A /* Vector3D.h */,
+				981AAF8E172875080016146A /* Pose.cpp */,
+				981AAF8F172875080016146A /* Pose.h */,
+				981AAF811728740B0016146A /* Matrix4x4.cpp */,
+				981AAF821728740B0016146A /* Matrix4x4.h */,
+			);
+			name = cpplinearalgebra;
+			sourceTree = "<group>";
+		};
 		984EE9AC16DD2D7F00BD24D5 = {
 			isa = PBXGroup;
 			children = (
+				981AAF84172874130016146A /* cpplinearalgebra */,
+				981AAF4A172871DF0016146A /* CameraAppDelegate.h */,
+				981AAF4B172871DF0016146A /* CameraAppDelegate.mm */,
+				981AAF4C172871DF0016146A /* CameraViewController.h */,
+				981AAF4D172871DF0016146A /* CameraViewController.mm */,
+				981AAF4E172871DF0016146A /* en.lproj */,
+				981AAF53172871DF0016146A /* GLProgram.h */,
+				981AAF54172871DF0016146A /* GLProgram.m */,
+				981AAF55172871DF0016146A /* GraphicsSingleton.h */,
+				981AAF56172871DF0016146A /* GraphicsSingleton.mm */,
+				981AAF57172871DF0016146A /* main.mm */,
+				981AAF58172871DF0016146A /* PointCloudProcessing.cpp */,
+				981AAF59172871DF0016146A /* PointCloudProcessing.h */,
+				981AAF5A172871DF0016146A /* PointView.h */,
+				981AAF5B172871DF0016146A /* PointView.mm */,
+				981AAF5C172871DF0016146A /* Rephoto-Info.plist */,
+				981AAF5D172871DF0016146A /* Rephoto-Prefix.pch */,
+				981AAF5E172871DF0016146A /* Shader.fsh */,
+				981AAF5F172871DF0016146A /* Shader.vsh */,
 				9890D56D16F8D8CF00EAC19E /* Resources */,
 				982141E316E54E2D00F7388F /* libpointcloud.a */,
 				983AD86C16E16BB1002870E8 /* PointCloud.h */,
-				984EE9C116DD2D7F00BD24D5 /* Rephoto */,
 				984EE9BA16DD2D7F00BD24D5 /* Frameworks */,
 				984EE9B816DD2D7F00BD24D5 /* Products */,
 			);
@@ -146,44 +187,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		984EE9C116DD2D7F00BD24D5 /* Rephoto */ = {
-			isa = PBXGroup;
-			children = (
-				98F05AB51717608E0037FE5B /* cpplinearalgebra */,
-				98423E92170B69ED0053825D /* MainStoryboard.storyboard */,
-				9805BB20171485D6009784EC /* GLProgram.h */,
-				9805BB21171485D6009784EC /* GLProgram.m */,
-				9806059416F92100005CDD83 /* Shader.fsh */,
-				9806059716F9210D005CDD83 /* Shader.vsh */,
-				983AD84A16E1689F002870E8 /* GraphicsSingleton.h */,
-				983AD84B16E1689F002870E8 /* GraphicsSingleton.mm */,
-				983AD84716E16349002870E8 /* PointCloudProcessing.cpp */,
-				983AD84816E16349002870E8 /* PointCloudProcessing.h */,
-				984EE9CA16DD2D7F00BD24D5 /* CameraAppDelegate.h */,
-				984EE9CB16DD2D7F00BD24D5 /* CameraAppDelegate.mm */,
-				98423E8D170B635F0053825D /* PointView.h */,
-				98423E8E170B635F0053825D /* PointView.mm */,
-				984EE9D616DD2D7F00BD24D5 /* CameraViewController.h */,
-				984EE9D716DD2D7F00BD24D5 /* CameraViewController.mm */,
-				984EE9C216DD2D7F00BD24D5 /* Supporting Files */,
-			);
-			path = Rephoto;
-			sourceTree = "<group>";
-		};
-		984EE9C216DD2D7F00BD24D5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				984EE9C316DD2D7F00BD24D5 /* Rephoto-Info.plist */,
-				984EE9C416DD2D7F00BD24D5 /* InfoPlist.strings */,
-				984EE9C716DD2D7F00BD24D5 /* main.mm */,
-				984EE9C916DD2D7F00BD24D5 /* Rephoto-Prefix.pch */,
-				984EE9CD16DD2D7F00BD24D5 /* Default.png */,
-				984EE9CF16DD2D7F00BD24D5 /* Default@2x.png */,
-				984EE9D116DD2D7F00BD24D5 /* Default-568h@2x.png */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		9890D56D16F8D8CF00EAC19E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,19 +194,6 @@
 				9890D56F16F8D8EB00EAC19E /* image_target_2.model */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		98F05AB51717608E0037FE5B /* cpplinearalgebra */ = {
-			isa = PBXGroup;
-			children = (
-				98F05AC4171762C50037FE5B /* Vector3D.cpp */,
-				98F05AC5171762C50037FE5B /* Vector3D.h */,
-				98F05AC1171761FB0037FE5B /* Pose.cpp */,
-				98F05AC2171761FB0037FE5B /* Pose.h */,
-				98F05AB81717608E0037FE5B /* Matrix4x4.cpp */,
-				98F05AB91717608E0037FE5B /* Matrix4x4.h */,
-			);
-			path = cpplinearalgebra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,15 +248,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98A4678317134E72009186FB /* MainStoryboard.storyboard in Resources */,
-				9806059916F922E5005CDD83 /* Shader.fsh in Resources */,
-				9806059A16F922E5005CDD83 /* Shader.vsh in Resources */,
-				984EE9C616DD2D7F00BD24D5 /* InfoPlist.strings in Resources */,
-				984EE9CE16DD2D7F00BD24D5 /* Default.png in Resources */,
-				984EE9D016DD2D7F00BD24D5 /* Default@2x.png in Resources */,
-				984EE9D216DD2D7F00BD24D5 /* Default-568h@2x.png in Resources */,
 				9890D57016F8D8EB00EAC19E /* image_target_2.jpg in Resources */,
 				9890D57116F8D8EB00EAC19E /* image_target_2.model in Resources */,
+				981AAF62172871DF0016146A /* InfoPlist.strings in Resources */,
+				981AAF63172871DF0016146A /* MainStoryboard.storyboard in Resources */,
+				981AAF69172871DF0016146A /* Rephoto-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,39 +263,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				984EE9C816DD2D7F00BD24D5 /* main.mm in Sources */,
-				984EE9CC16DD2D7F00BD24D5 /* CameraAppDelegate.mm in Sources */,
-				984EE9D816DD2D7F00BD24D5 /* CameraViewController.mm in Sources */,
-				983AD84916E16349002870E8 /* PointCloudProcessing.cpp in Sources */,
-				983AD84C16E1689F002870E8 /* GraphicsSingleton.mm in Sources */,
-				9806059516F92100005CDD83 /* Shader.fsh in Sources */,
-				9806059816F9210D005CDD83 /* Shader.vsh in Sources */,
-				98423E8F170B635F0053825D /* PointView.mm in Sources */,
-				9805BB22171485D6009784EC /* GLProgram.m in Sources */,
-				98F05ABE1717608E0037FE5B /* Matrix4x4.cpp in Sources */,
-				98F05AC3171761FB0037FE5B /* Pose.cpp in Sources */,
-				98F05AC6171762C50037FE5B /* Vector3D.cpp in Sources */,
+				981AAF60172871DF0016146A /* CameraAppDelegate.mm in Sources */,
+				981AAF61172871DF0016146A /* CameraViewController.mm in Sources */,
+				981AAF64172871DF0016146A /* GLProgram.m in Sources */,
+				981AAF65172871DF0016146A /* GraphicsSingleton.mm in Sources */,
+				981AAF66172871DF0016146A /* main.mm in Sources */,
+				981AAF67172871DF0016146A /* PointCloudProcessing.cpp in Sources */,
+				981AAF68172871DF0016146A /* PointView.mm in Sources */,
+				981AAF6A172871DF0016146A /* Shader.fsh in Sources */,
+				981AAF6B172871DF0016146A /* Shader.vsh in Sources */,
+				981AAF831728740B0016146A /* Matrix4x4.cpp in Sources */,
+				981AAF90172875080016146A /* Pose.cpp in Sources */,
+				981AAF93172878350016146A /* Vector3D.cpp in Sources */,
+				981AAF96172878420016146A /* Quaternion.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		98423E92170B69ED0053825D /* MainStoryboard.storyboard */ = {
+		981AAF4F172871DF0016146A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				98423E93170B69ED0053825D /* en */,
-			);
-			name = MainStoryboard.storyboard;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		984EE9C416DD2D7F00BD24D5 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				984EE9C516DD2D7F00BD24D5 /* en */,
+				981AAF50172871DF0016146A /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		981AAF51172871DF0016146A /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				981AAF52172871DF0016146A /* en */,
+			);
+			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

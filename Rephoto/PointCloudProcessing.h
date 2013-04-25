@@ -15,7 +15,7 @@
 #include "PointCloud.h"
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
-#include "Matrix4x4.h"
+//#include "Matrix4x4.h"
 #include "Pose.h"
 
 class PointCloudProcessing {
@@ -33,12 +33,13 @@ public:
     void save_slam_map(std::string filename);
     void load_slam_filename(std::string filename);
     void set_desired_camera_pose(Matrix4x4 pose);
+    void start_align();
     
 protected:
     pointcloud_matrix_4x4 projection_matrix;
 	pointcloud_matrix_4x4 camera_matrix;
-    Matrix4x4 current_camera_pose;
-    Matrix4x4 desired_camera_pose;
+    Pose current_camera_pose;
+    Pose desired_camera_pose;
     
 private:
     void setup_graphics();
