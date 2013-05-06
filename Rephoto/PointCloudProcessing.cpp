@@ -37,6 +37,9 @@ PointCloudProcessing::PointCloudProcessing(int viewport_width, int viewport_heig
     setup_graphics();
     program = prog;
     aligning_to_old = false;
+    
+    mvp_uniform = glGetUniformLocation(program, "modelViewProjectionMatrix");
+    color_uniform = glGetUniformLocation(program, "pointcolor");
 }
 
 PointCloudProcessing::~PointCloudProcessing(){
@@ -133,8 +136,8 @@ void PointCloudProcessing::render_point_cloud(){
 //            std::cout<<"mvp"<<std::endl;
 //            mvp.print();
 
-            GLuint mvp_uniform = glGetUniformLocation(program, "modelViewProjectionMatrix");
-            GLuint color_uniform = glGetUniformLocation(program, "pointcolor");
+//            GLuint mvp_uniform = glGetUniformLocation(program, "modelViewProjectionMatrix");
+//            GLuint color_uniform = glGetUniformLocation(program, "pointcolor");
             glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
             if (state == POINTCLOUD_INITIALIZING){
                 glUniform4f(color_uniform, 1.0, 1.0, 0, 1.0);
@@ -163,6 +166,13 @@ void PointCloudProcessing::render_point_cloud(){
 ////        Matrix4x4 cp = Matrix4x4(camera_pose.data);
 ////        cp.print();
 //    }
+}
+
+void PointCloudProcessing::arrows(Vector3D transformation){
+    std::cout<<"translation to desired pose"<<std::endl;
+    transformation.print();
+    
+    
 }
 
 void PointCloudProcessing::frame_process(char *data, double timestamp){
@@ -197,12 +207,10 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
         
         //translation to desired camera location
         Vector3D translation_to_desired = desired_camera_pose.translationToDesiredPose(current_camera_pose);
-        std::cout<<"translation to desired pose"<<std::endl;
-        translation_to_desired.print();
         
 //        std::cout<<"current camera pose"<<std::endl;
 //        current_camera_pose.print();
         
-        
+        arrows(translation_to_desired);
     }
 }

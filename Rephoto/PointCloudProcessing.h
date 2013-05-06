@@ -34,6 +34,7 @@ public:
     void load_slam_filename(std::string filename);
     void set_desired_camera_pose(Matrix4x4 pose);
     void start_align();
+    void arrows(Vector3D transformation);
     
 protected:
     pointcloud_matrix_4x4 projection_matrix;
@@ -46,6 +47,9 @@ private:
     void setup_graphics();
     GLuint program;
     bool aligning_to_old;
+    
+    GLuint mvp_uniform;
+    GLuint color_uniform;
 };
 
 #endif /* defined(__Rephoto__PointCloudProcessing__) */
