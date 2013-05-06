@@ -94,7 +94,7 @@ void PointCloudProcessing::load_slam_filename(std::string filename){
 
 void PointCloudProcessing::set_desired_camera_pose(Matrix4x4 pose){
     desired_camera_pose = Pose(pose);
-    desired_object_loc = desired_camera_pose.getObjectLocation();
+    Vector3D desired_object_loc = desired_camera_pose.getObjectLocation();
     
     //debug POSE
 //    std::cout<<"desired camera pose"<<std::endl;
@@ -180,8 +180,9 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
 //    pm.print();
     
     pointcloud_matrix_4x4 ccp = pointcloud_get_camera_pose();
-    Matrix4x4 current_camera_pose_mat = Matrix4x4(ccp.data);
-    Pose current_camera_pose = Pose(current_camera_pose_mat);
+//    Matrix4x4 current_camera_pose_mat = Matrix4x4(ccp.data);
+//    Pose current_camera_pose = Pose(current_camera_pose_mat);
+    current_camera_pose = Pose(ccp.data);
     
 //    std::cout<<"current camera pose"<<std::endl;
 //    current_camera_pose.print();
@@ -190,11 +191,18 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
         // compute arrow transformation
         
         //difference between object location
-        Vector3D current_object_loc = current_camera_pose.getObjectLocation();
-        std::cout<<"current object loc"<<std::endl;
-        current_object_loc.print();
+//        Vector3D current_object_loc = current_camera_pose.getObjectLocation();
+//        std::cout<<"current object loc"<<std::endl;
+//        current_object_loc.print();
+        
+        //translation to desired camera location
+        Vector3D translation_to_desired = desired_camera_pose.translationToDesiredPose(current_camera_pose);
+        std::cout<<"translation to desired pose"<<std::endl;
+        translation_to_desired.print();
         
 //        std::cout<<"current camera pose"<<std::endl;
 //        current_camera_pose.print();
+        
+        
     }
 }
