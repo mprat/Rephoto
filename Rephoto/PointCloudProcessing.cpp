@@ -175,12 +175,11 @@ void PointCloudProcessing::render_point_cloud(){
 //    }
 }
 
-void PointCloudProcessing::arrows(){
-//    glClearColor(0, 0, 0, 1.0);
-//    glClear(GL_COLOR_BUFFER_BIT);
-    
+void PointCloudProcessing::arrows(){    
     if (aligning_to_old){
         // compute arrow transformation
+        glClearColor(0, 0, 0, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT);
         
         //difference between object location
         //        Vector3D current_object_loc = current_camera_pose.getObjectLocation();
@@ -200,17 +199,18 @@ void PointCloudProcessing::arrows(){
         //set identity MVP
         Matrix4x4 mvp = Matrix4x4();
         glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
+        //TODO: multiply mvp by the orthographic matrix that is the viewport (from -1 to 1)
         
         glUniform4f(color_uniform, 0, 0, 1.0, 1.0);
         
         const GLfloat line[] =
         {
-            0.0f, 0.0f, //point A
-            1.0f, 1.0f, //point B
+            0.0f, 0.0f, //"origin"
+            translation_to_desired.y, translation_to_desired.x, //"desired"
         };
     
         glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*2, NULL, GL_DYNAMIC_DRAW);
-        glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*2, (float *)line, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(line), (float *)line, GL_DYNAMIC_DRAW);
     
         glEnableVertexAttribArray(ATTRIB_POINTPOS);
         glVertexAttribPointer(ATTRIB_POINTPOS, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
