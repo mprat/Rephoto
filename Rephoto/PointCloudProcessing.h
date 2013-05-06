@@ -36,6 +36,8 @@ public:
     void start_align();
     void arrows();
     
+    bool aligning();
+    
 protected:
     pointcloud_matrix_4x4 projection_matrix;
 	pointcloud_matrix_4x4 camera_matrix;

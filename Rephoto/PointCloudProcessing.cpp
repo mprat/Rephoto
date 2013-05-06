@@ -51,6 +51,13 @@ void PointCloudProcessing::setup_graphics(){
     
     //TODO: add ui_scale_scale factor?
     glViewport(0, 0, context.viewport_width, context.viewport_height);
+    
+    //clear graphics buffers
+    glClearColor(0, 0, 0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glDisableVertexAttribArray(ATTRIB_POINTPOS);
+    
+    aligning_to_old = false;
 }
 
 void PointCloudProcessing::on_accelerometer_update(float x, float y, float z, double timestamp){
@@ -69,9 +76,11 @@ bool PointCloudProcessing::start_slam(){
 		if (pointcloud_get_state() == POINTCLOUD_IDLE) {
 			printf("Start initialization\n");
 			pointcloud_start_slam();
+            setup_graphics();
 		} else {
 			printf("Resetting\n");
 			pointcloud_reset();
+            setup_graphics();
 		}
         return true;
 	}
@@ -115,6 +124,10 @@ void PointCloudProcessing::start_align(){
 void PointCloudProcessing::send_mvp_matrix(){
     Matrix4x4 mvp = Matrix4x4(camera_matrix.data) * Matrix4x4(projection_matrix.data);
     glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
+}
+
+bool PointCloudProcessing::aligning(){
+    return aligning_to_old;
 }
 
 void PointCloudProcessing::render_point_cloud(){
