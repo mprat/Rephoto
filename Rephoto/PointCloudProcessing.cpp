@@ -197,6 +197,10 @@ void PointCloudProcessing::arrows(){
         std::cout<<"translation to desired pose"<<std::endl;
         translation_to_desired.print();
         
+        //set identity MVP
+        Matrix4x4 mvp = Matrix4x4();
+        glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
+        
         glUniform4f(color_uniform, 0, 0, 1.0, 1.0);
         
         const GLfloat line[] =
