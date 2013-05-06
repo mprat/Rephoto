@@ -34,7 +34,7 @@ public:
     void load_slam_filename(std::string filename);
     void set_desired_camera_pose(Matrix4x4 pose);
     void start_align();
-    void arrows(Vector3D transformation);
+    void arrows();
     
 protected:
     pointcloud_matrix_4x4 projection_matrix;
@@ -45,6 +45,8 @@ protected:
     
 private:
     void setup_graphics();
+    void send_mvp_matrix();
+    
     GLuint program;
     bool aligning_to_old;
     

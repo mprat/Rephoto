@@ -417,6 +417,8 @@ GLint uniforms[NUM_UNIFORMS];
         pointCloudProcessing->render_point_cloud();
         //any changes that are made in the frame_process code must be told to render after the frame is processed
         [self.context presentRenderbuffer:GL_RENDERBUFFER];
+        pointCloudProcessing->arrows();
+        [self.context presentRenderbuffer:GL_RENDERBUFFER];
 		
 		CVPixelBufferUnlockBaseAddress (pixelBuffer, 0);
 	}

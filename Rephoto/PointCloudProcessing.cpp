@@ -112,6 +112,11 @@ void PointCloudProcessing::start_align(){
     //TODO: start printing commands?
 }
 
+void PointCloudProcessing::send_mvp_matrix(){
+    Matrix4x4 mvp = Matrix4x4(camera_matrix.data) * Matrix4x4(projection_matrix.data);
+    glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
+}
+
 void PointCloudProcessing::render_point_cloud(){
     //clear the color buffer bit before every time
     //TODO: do we need to clear the depth buffer every bit as well?
@@ -132,13 +137,14 @@ void PointCloudProcessing::render_point_cloud(){
             glBlendFunc(GL_SRC_ALPHA, GL_SRC_ALPHA);
             
             //model view projection matrix
-            Matrix4x4 mvp = Matrix4x4(camera_matrix.data) * Matrix4x4(projection_matrix.data);
+//            Matrix4x4 mvp = Matrix4x4(camera_matrix.data) * Matrix4x4(projection_matrix.data);
 //            std::cout<<"mvp"<<std::endl;
 //            mvp.print();
 
 //            GLuint mvp_uniform = glGetUniformLocation(program, "modelViewProjectionMatrix");
 //            GLuint color_uniform = glGetUniformLocation(program, "pointcolor");
-            glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
+//            glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
+            send_mvp_matrix();
             if (state == POINTCLOUD_INITIALIZING){
                 glUniform4f(color_uniform, 1.0, 1.0, 0, 1.0);
             }
@@ -150,6 +156,7 @@ void PointCloudProcessing::render_point_cloud(){
             glBufferData(GL_ARRAY_BUFFER, 3*sizeof(float)*5012, NULL, GL_DYNAMIC_DRAW);
             glBufferData(GL_ARRAY_BUFFER, 3*sizeof(float)*(std::min(5012, (int)points->size)), (float *)points->points, GL_DYNAMIC_DRAW);
             glEnableVertexAttribArray(ATTRIB_POINTPOS);
+            glVertexAttribPointer(ATTRIB_POINTPOS, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
             glDrawArrays(GL_POINTS, 0, points->size);
             
 			pointcloud_destroy_point_cloud(points);
@@ -168,11 +175,44 @@ void PointCloudProcessing::render_point_cloud(){
 //    }
 }
 
-void PointCloudProcessing::arrows(Vector3D transformation){
-    std::cout<<"translation to desired pose"<<std::endl;
-    transformation.print();
+void PointCloudProcessing::arrows(){
+//    glClearColor(0, 0, 0, 1.0);
+//    glClear(GL_COLOR_BUFFER_BIT);
+    
+    if (aligning_to_old){
+        // compute arrow transformation
+        
+        //difference between object location
+        //        Vector3D current_object_loc = current_camera_pose.getObjectLocation();
+        //        std::cout<<"current object loc"<<std::endl;
+        //        current_object_loc.print();
+        
+        //translation to desired camera location
+        Vector3D translation_to_desired = desired_camera_pose.translationToDesiredPose(current_camera_pose);
+        
+        //        std::cout<<"current camera pose"<<std::endl;
+        //        current_camera_pose.print();
     
     
+        std::cout<<"translation to desired pose"<<std::endl;
+        translation_to_desired.print();
+        
+        glUniform4f(color_uniform, 0, 0, 1.0, 1.0);
+        
+        const GLfloat line[] =
+        {
+            0.0f, 0.0f, //point A
+            1.0f, 1.0f, //point B
+        };
+    
+        glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*2, NULL, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*2, (float *)line, GL_DYNAMIC_DRAW);
+    
+        glEnableVertexAttribArray(ATTRIB_POINTPOS);
+        glVertexAttribPointer(ATTRIB_POINTPOS, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
+        //rendering 2 points
+        glDrawArrays(GL_LINES, 0, 2);
+    }
 }
 
 void PointCloudProcessing::frame_process(char *data, double timestamp){
@@ -196,21 +236,4 @@ void PointCloudProcessing::frame_process(char *data, double timestamp){
     
 //    std::cout<<"current camera pose"<<std::endl;
 //    current_camera_pose.print();
-
-    if (aligning_to_old){
-        // compute arrow transformation
-        
-        //difference between object location
-//        Vector3D current_object_loc = current_camera_pose.getObjectLocation();
-//        std::cout<<"current object loc"<<std::endl;
-//        current_object_loc.print();
-        
-        //translation to desired camera location
-        Vector3D translation_to_desired = desired_camera_pose.translationToDesiredPose(current_camera_pose);
-        
-//        std::cout<<"current camera pose"<<std::endl;
-//        current_camera_pose.print();
-        
-        arrows(translation_to_desired);
-    }
 }
