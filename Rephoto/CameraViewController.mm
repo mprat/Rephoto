@@ -428,7 +428,7 @@ GLint uniforms[NUM_UNIFORMS];
             float dist = pointCloudProcessing->arrows();
             [self.context presentRenderbuffer:GL_RENDERBUFFER];
             
-//            std::cout<<"dist = "<<dist<<std::endl;
+            std::cout<<"dist = "<<dist<<std::endl;
             if (dist > 0 && dist < .006){
                 //take picture based on some metric retrieved from the "arrows" method
                 std::cout<<"PICTURE"<<std::endl;
