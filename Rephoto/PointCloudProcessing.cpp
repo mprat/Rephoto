@@ -230,7 +230,8 @@ float PointCloudProcessing::arrows(){
         //rendering 2 points
         glDrawArrays(GL_LINES, 0, 2);
         
-        return translation_to_desired.length();
+//        return translation_to_desired.length();
+        return (sqrt(translation_to_desired.x*translation_to_desired.x + translation_to_desired.y*translation_to_desired.y));
     }
     return -1;
 }

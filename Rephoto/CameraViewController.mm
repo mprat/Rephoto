@@ -272,6 +272,7 @@ GLint uniforms[NUM_UNIFORMS];
                 
                 //save image
                 [UIImageJPEGRepresentation(photo, 1.0) writeToFile:jpgPath atomically:YES];
+                UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil);
             }
         }];
     }
