@@ -39,6 +39,8 @@ GLint uniforms[NUM_UNIFORMS];
     GLuint _vertexBuffer;
     
     AVCaptureStillImageOutput *imgoutput;
+    
+    NSString* proj_name;
 }
 @property (strong, nonatomic) EAGLContext *context;
 
@@ -227,21 +229,23 @@ GLint uniforms[NUM_UNIFORMS];
     if (alertView.tag == TAG_SAVE && buttonIndex == 1) {
         UITextField *filenameText = [alertView textFieldAtIndex:0];
         [alertView show];
+        proj_name = filenameText.text;
 //        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
-        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
+        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:proj_name]];
         pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
-        [self savePicture:filenameText.text];
+        [self savePicture:proj_name:TRUE];
     } else if (alertView.tag == TAG_LOAD && buttonIndex == 1){
         UITextField *filenameText = [alertView textFieldAtIndex:0];
         [alertView show];
-        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
+        proj_name = filenameText.text;
+        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:proj_name]];
         pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
-        [self loadDesiredCameraPose:[self readCameraPoseFromMapname:filenameText.text]];
+        [self loadDesiredCameraPose:[self readCameraPoseFromMapname:proj_name]];
         
         pointCloudProcessing->start_align();
     }}
 
--(void)savePicture:(NSString *)mapname{
+-(void)savePicture:(NSString *)mapname:(BOOL)AndPose{
     AVCaptureConnection *videoConnection = nil;
     NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
     for (AVCaptureConnection *connection in imgoutput.connections) {
@@ -259,8 +263,10 @@ GLint uniforms[NUM_UNIFORMS];
             if (imageDataSampleBuffer != NULL){
                 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 UIImage *photo = [[UIImage alloc] initWithData:imageData];
-
-                [self getAndSaveCameraPose:mapname];
+                
+                if (AndPose){
+                    [self getAndSaveCameraPose:mapname];
+                }
                 
                 NSString *jpgPath = [[documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:mapname]] stringByAppendingPathExtension:@"jpg"];
                 
@@ -418,8 +424,15 @@ GLint uniforms[NUM_UNIFORMS];
         //any changes that are made in the frame_process code must be told to render after the frame is processed
         [self.context presentRenderbuffer:GL_RENDERBUFFER];
         if (pointCloudProcessing->aligning()){
-            pointCloudProcessing->arrows();
+            float dist = pointCloudProcessing->arrows();
             [self.context presentRenderbuffer:GL_RENDERBUFFER];
+            
+//            std::cout<<"dist = "<<dist<<std::endl;
+            if (dist > 0 && dist < .006){
+                //take picture based on some metric retrieved from the "arrows" method
+                std::cout<<"PICTURE"<<std::endl;
+                [self savePicture:[proj_name stringByAppendingString:@"_second"]:FALSE];
+            }
         }
 		
 		CVPixelBufferUnlockBaseAddress (pixelBuffer, 0);

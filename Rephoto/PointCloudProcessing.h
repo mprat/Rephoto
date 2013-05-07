@@ -34,7 +34,7 @@ public:
     void load_slam_filename(std::string filename);
     void set_desired_camera_pose(Matrix4x4 pose);
     void start_align();
-    void arrows();
+    float arrows();
     
     bool aligning();
     

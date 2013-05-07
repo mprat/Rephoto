@@ -188,7 +188,7 @@ void PointCloudProcessing::render_point_cloud(){
 //    }
 }
 
-void PointCloudProcessing::arrows(){    
+float PointCloudProcessing::arrows(){
     if (aligning_to_old){
         // compute arrow transformation
         glClearColor(0, 0, 0, 1.0);
@@ -206,8 +206,8 @@ void PointCloudProcessing::arrows(){
         //        current_camera_pose.print();
     
     
-        std::cout<<"translation to desired pose"<<std::endl;
-        translation_to_desired.print();
+//        std::cout<<"translation to desired pose"<<std::endl;
+//        translation_to_desired.print();
         
         //set identity MVP
         Matrix4x4 mvp = Matrix4x4();
@@ -229,7 +229,10 @@ void PointCloudProcessing::arrows(){
         glVertexAttribPointer(ATTRIB_POINTPOS, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
         //rendering 2 points
         glDrawArrays(GL_LINES, 0, 2);
+        
+        return translation_to_desired.length();
     }
+    return -1;
 }
 
 void PointCloudProcessing::frame_process(char *data, double timestamp){
