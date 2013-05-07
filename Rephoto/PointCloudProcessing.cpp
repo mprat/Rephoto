@@ -206,15 +206,21 @@ float PointCloudProcessing::arrows(){
         //        current_camera_pose.print();
     
     
-//        std::cout<<"translation to desired pose"<<std::endl;
-//        translation_to_desired.print();
+        std::cout<<"translation to desired pose"<<std::endl;
+        translation_to_desired.print();
         
         //set identity MVP
         Matrix4x4 mvp = Matrix4x4();
         glUniformMatrix4fv(mvp_uniform, 1, GL_FALSE, (float *)mvp);
-        //TODO: multiply mvp by the orthographic matrix that is the viewport (from -1 to 1)
+        //TODO: multiply mvp by the orthographic matrix that is the viewport (from -1 to 1)?
         
-        glUniform4f(color_uniform, 0, 0, 1.0, 1.0);
+        //change color to indicate whether to move forwards or backwards
+        //positive z means move forward (more green)
+        //negative z means move backward (more red)
+        if (translation_to_desired.z > 0)
+            glUniform4f(color_uniform, 1.0, 0.0, 0, 1.0);
+        else
+            glUniform4f(color_uniform, 0.0, 1.0, 0, 1.0);
         
         const GLfloat line[] =
         {
@@ -222,16 +228,17 @@ float PointCloudProcessing::arrows(){
             translation_to_desired.y, translation_to_desired.x, //"desired"
         };
     
-        glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*2, NULL, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*sizeof(line)/(2.0*sizeof(GLfloat)), NULL, GL_DYNAMIC_DRAW);
         glBufferData(GL_ARRAY_BUFFER, sizeof(line), (float *)line, GL_DYNAMIC_DRAW);
+        glLineWidth(4.0);
     
         glEnableVertexAttribArray(ATTRIB_POINTPOS);
         glVertexAttribPointer(ATTRIB_POINTPOS, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
         //rendering 2 points
-        glDrawArrays(GL_LINES, 0, 2);
+        glDrawArrays(GL_LINES, 0, sizeof(line)/(2.0*sizeof(GLfloat)));
         
-//        return translation_to_desired.length();
-        return translation_to_desired.xy_length();
+        return translation_to_desired.length();
+//        return translation_to_desired.xy_length();
     }
     return -1;
 }
