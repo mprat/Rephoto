@@ -217,10 +217,17 @@ float PointCloudProcessing::arrows(){
         //change color to indicate whether to move forwards or backwards
         //positive z means move forward (more green)
         //negative z means move backward (more red)
+        float z_color = fmin(1.0, fabs(translation_to_desired.z)/0.08);
+        std::cout<<"z_color = "<<z_color<<std::endl;
         if (translation_to_desired.z > 0)
-            glUniform4f(color_uniform, 1.0, 0.0, 0, 1.0);
+            glUniform4f(color_uniform, z_color, 1.0-z_color, 0, 1.0);
         else
-            glUniform4f(color_uniform, 0.0, 1.0, 0, 1.0);
+            glUniform4f(color_uniform, 1.0-z_color, z_color, 0, 1.0);
+
+//        if (translation_to_desired.z > 0)
+//            glUniform4f(color_uniform, 1.0, 0, 0, 1.0);
+//        else
+//            glUniform4f(color_uniform, 0, 1.0, 0, 1.0);
         
         const GLfloat line[] =
         {
