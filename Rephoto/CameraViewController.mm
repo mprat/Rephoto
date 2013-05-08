@@ -195,6 +195,7 @@ GLint uniforms[NUM_UNIFORMS];
     
 //    pointCloudProcessing->start_match_to_image();
     pointCloudProcessing->start_slam();
+    _PictureLabel.hidden = TRUE;
 }
 
 - (IBAction)SameSlamButtonPressed:(id)sender {
@@ -224,29 +225,46 @@ GLint uniforms[NUM_UNIFORMS];
     [alertView show];
 }
 
+- (IBAction)BrowseRephotos:(id)sender {
+    
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
     if (alertView.tag == TAG_SAVE && buttonIndex == 1) {
         UITextField *filenameText = [alertView textFieldAtIndex:0];
         [alertView show];
         proj_name = filenameText.text;
 //        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:filenameText.text]];
-        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:proj_name]];
-        pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
-        [self savePicture:proj_name:TRUE];
+        [self saveSlamMapToProjName];
+        
     } else if (alertView.tag == TAG_LOAD && buttonIndex == 1){
         UITextField *filenameText = [alertView textFieldAtIndex:0];
         [alertView show];
+        
         proj_name = filenameText.text;
-        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:proj_name]];
-        pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
-        [self loadDesiredCameraPose:[self readCameraPoseFromMapname:proj_name]];
+        [self loadSlamMapFromProjName];
         
         pointCloudProcessing->start_align();
-    }}
+    }
+}
 
--(void)savePicture:(NSString *)mapname:(BOOL)AndPose{
+-(void)saveSlamMapToProjName{
+    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:proj_name]];
+    pointCloudProcessing->save_slam_map([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
+    
+    [self takeAndSavePicture:proj_name:TRUE];
+}
+
+-(void)loadSlamMapFromProjName{
+    NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithString:proj_name]];
+    pointCloudProcessing->load_slam_filename([fullPath cStringUsingEncoding:NSUTF8StringEncoding]);
+    [self loadDesiredCameraPose:[self readCameraPoseFromMapname:proj_name]];
+}
+
+-(void)takeAndSavePicture:(NSString *)mapname:(BOOL)AndPose{
     AVCaptureConnection *videoConnection = nil;
     NSString *documentsDirectory =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
     for (AVCaptureConnection *connection in imgoutput.connections) {
@@ -433,7 +451,7 @@ GLint uniforms[NUM_UNIFORMS];
             if (dist > 0 && dist < .006){
                 //take picture based on some metric retrieved from the "arrows" method
                 std::cout<<"PICTURE"<<std::endl;
-                [self savePicture:[proj_name stringByAppendingString:@"_second"]:FALSE];
+                [self takeAndSavePicture:[proj_name stringByAppendingString:@"_second"]:FALSE];
                 
                 //make it obvious to the user that a picture is being taken
                 _PictureLabel.hidden = FALSE;
