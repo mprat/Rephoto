@@ -230,13 +230,23 @@ float PointCloudProcessing::arrows(){
 //            glUniform4f(color_uniform, 0, 1.0, 0, 1.0);
         
         glUniform4f(color_uniform, 0, 0, 1.0, 1.0);
+        if (translation_to_desired.z > 0){
+            
+        } else {
+            
+        }
         
         float line_x = -translation_to_desired.y;
         float line_y = -translation_to_desired.x;
+        float arrowhead_len = translation_to_desired.xy_length()/2;
         const GLfloat line[] =
         {
             0.0f, 0.0f, //"origin"
             line_x, line_y, //"desired"
+            0.0f, 0.0f,
+            0.0f, ((line_y > 0) - (line_y < 0))*arrowhead_len,
+            0.0f, 0.0f,
+            ((line_x > 0) - (line_x < 0))*arrowhead_len, 0.0f,
         };
     
         glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*sizeof(line)/(2.0*sizeof(GLfloat)), NULL, GL_DYNAMIC_DRAW);
@@ -246,7 +256,7 @@ float PointCloudProcessing::arrows(){
         glEnableVertexAttribArray(ATTRIB_POINTPOS);
         glVertexAttribPointer(ATTRIB_POINTPOS, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
         //rendering 2 points
-        glDrawArrays(GL_LINES, 0, 2);
+        glDrawArrays(GL_LINES, 0, sizeof(line)/(2.0*sizeof(GLfloat)));
         
         return translation_to_desired.length();
 //        return translation_to_desired.xy_length();
