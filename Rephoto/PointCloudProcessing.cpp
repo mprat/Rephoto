@@ -217,22 +217,26 @@ float PointCloudProcessing::arrows(){
         //change color to indicate whether to move forwards or backwards
         //positive z means move forward (more green)
         //negative z means move backward (more red)
-        float z_color = fmin(1.0, fabs(translation_to_desired.z)/0.08);
-        std::cout<<"z_color = "<<z_color<<std::endl;
-        if (translation_to_desired.z > 0)
-            glUniform4f(color_uniform, z_color, 1.0-z_color, 0, 1.0);
-        else
-            glUniform4f(color_uniform, 1.0-z_color, z_color, 0, 1.0);
-
+//        float z_color = fmin(1.0, fabs(translation_to_desired.z)/0.08);
+//        std::cout<<"z_color = "<<z_color<<std::endl;
+//        if (translation_to_desired.z > 0)
+//            glUniform4f(color_uniform, z_color, 1.0-z_color, 0, 1.0);
+//        else
+//            glUniform4f(color_uniform, 1.0-z_color, z_color, 0, 1.0);
+//
 //        if (translation_to_desired.z > 0)
 //            glUniform4f(color_uniform, 1.0, 0, 0, 1.0);
 //        else
 //            glUniform4f(color_uniform, 0, 1.0, 0, 1.0);
         
+        glUniform4f(color_uniform, 0, 0, 1.0, 1.0);
+        
+        float line_x = -translation_to_desired.y;
+        float line_y = -translation_to_desired.x;
         const GLfloat line[] =
         {
             0.0f, 0.0f, //"origin"
-            translation_to_desired.y, translation_to_desired.x, //"desired"
+            line_x, line_y, //"desired"
         };
     
         glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*sizeof(line)/(2.0*sizeof(GLfloat)), NULL, GL_DYNAMIC_DRAW);
@@ -242,7 +246,7 @@ float PointCloudProcessing::arrows(){
         glEnableVertexAttribArray(ATTRIB_POINTPOS);
         glVertexAttribPointer(ATTRIB_POINTPOS, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
         //rendering 2 points
-        glDrawArrays(GL_LINES, 0, sizeof(line)/(2.0*sizeof(GLfloat)));
+        glDrawArrays(GL_LINES, 0, 2);
         
         return translation_to_desired.length();
 //        return translation_to_desired.xy_length();
