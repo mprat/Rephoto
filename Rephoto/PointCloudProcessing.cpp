@@ -230,16 +230,15 @@ float PointCloudProcessing::arrows(){
 //            glUniform4f(color_uniform, 0, 1.0, 0, 1.0);
         
         glUniform4f(color_uniform, 0, 0, 1.0, 1.0);
-        if (translation_to_desired.z > 0){
-            
-        } else {
-            
-        }
         
+        // set up "X" for "into the page"
+        // and square for "out of the page"
+        float z_guide_x = fminf(0.5f, fabs(translation_to_desired.z));
+        float z_guide_y = fminf(0.5f, fabs(translation_to_desired.z));
         float line_x = -translation_to_desired.y;
         float line_y = -translation_to_desired.x;
         float arrowhead_len = translation_to_desired.xy_length()/2;
-        const GLfloat line[] =
+        const GLfloat guide_points[] =
         {
             0.0f, 0.0f, //"origin"
             line_x, line_y, //"desired"
@@ -247,16 +246,24 @@ float PointCloudProcessing::arrows(){
             0.0f, ((line_y > 0) - (line_y < 0))*arrowhead_len,
             0.0f, 0.0f,
             ((line_x > 0) - (line_x < 0))*arrowhead_len, 0.0f,
+            (translation_to_desired.z > 0)*z_guide_x, (translation_to_desired.z > 0)*z_guide_y,
+            z_guide_x, -z_guide_y,
+            (translation_to_desired.z > 0)*z_guide_x, (translation_to_desired.z > 0)*-z_guide_y,
+            -z_guide_x, -z_guide_y,
+            -z_guide_x, z_guide_y,
+            (translation_to_desired.z > 0)*-z_guide_x, (translation_to_desired.z > 0)*-z_guide_y,
+            (translation_to_desired.z > 0)*-z_guide_x, (translation_to_desired.z > 0)*z_guide_y,
+            z_guide_x, z_guide_y,
         };
     
-        glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*sizeof(line)/(2.0*sizeof(GLfloat)), NULL, GL_DYNAMIC_DRAW);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(line), (float *)line, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, 2*sizeof(float)*sizeof(guide_points)/(2.0*sizeof(GLfloat)), NULL, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(guide_points), (float *)guide_points, GL_DYNAMIC_DRAW);
         glLineWidth(4.0);
     
         glEnableVertexAttribArray(ATTRIB_POINTPOS);
         glVertexAttribPointer(ATTRIB_POINTPOS, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
         //rendering 2 points
-        glDrawArrays(GL_LINES, 0, sizeof(line)/(2.0*sizeof(GLfloat)));
+        glDrawArrays(GL_LINES, 0, sizeof(guide_points)/(2.0*sizeof(GLfloat)));
         
         return translation_to_desired.length();
 //        return translation_to_desired.xy_length();
