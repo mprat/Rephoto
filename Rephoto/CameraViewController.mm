@@ -54,6 +54,7 @@ GLint uniforms[NUM_UNIFORMS];
 @synthesize pointLayer = _pointLayer;
 @synthesize timestamp = _timestamp;
 @synthesize context = _context;
+@synthesize PictureLabel = _PictureLabel;
 //@synthesize pointView = _pointView;
 
 - (void)viewDidLoad
@@ -433,6 +434,9 @@ GLint uniforms[NUM_UNIFORMS];
                 //take picture based on some metric retrieved from the "arrows" method
                 std::cout<<"PICTURE"<<std::endl;
                 [self savePicture:[proj_name stringByAppendingString:@"_second"]:FALSE];
+                
+                //make it obvious to the user that a picture is being taken
+                _PictureLabel.hidden = FALSE;
             }
         }
 		

@@ -25,6 +25,7 @@
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
 @property (strong, nonatomic) CALayer *pointLayer;
 @property (strong, nonatomic) CMMotionManager *motionManager;
+@property (weak, nonatomic) IBOutlet UILabel *PictureLabel;
 @property (nonatomic) Float64 timestamp;
 //@property (strong, nonatomic) PointView *pointView;
 

@@ -61,13 +61,23 @@
                                     <action selector="LoadSlamFromFilename:" destination="2" eventType="touchUpInside" id="RPb-i8-aT9"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Picture taken" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UM-92-iAD">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="111" id="KN5-CC-nxc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="46"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Rwq-Wa-5Xi" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="2Ls-OB-PrL"/>
+                            <constraint firstItem="6UM-92-iAD" firstAttribute="top" secondItem="5" secondAttribute="top" constant="446" id="7w2-yo-ujQ"/>
                             <constraint firstItem="L1K-i6-gZT" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="JB3-Hi-khf"/>
                             <constraint firstItem="Rwq-Wa-5Xi" firstAttribute="top" secondItem="L1K-i6-gZT" secondAttribute="top" type="default" id="Nxk-Lu-Gw2"/>
-                            <constraint firstItem="rQ6-5o-Ooj" firstAttribute="baseline" secondItem="L1K-i6-gZT" secondAttribute="baseline" type="default" id="OjE-7t-pHz"/>
+                            <constraint firstItem="6UM-92-iAD" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Osw-Ji-uDO"/>
+                            <constraint firstAttribute="trailing" secondItem="6UM-92-iAD" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="TjK-nj-Fh0"/>
                             <constraint firstItem="Rwq-Wa-5Xi" firstAttribute="top" secondItem="rQ6-5o-Ooj" secondAttribute="top" type="default" id="VgF-1R-p9k"/>
                             <constraint firstItem="Rwq-Wa-5Xi" firstAttribute="leading" secondItem="L1K-i6-gZT" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ZnT-IC-8Sz"/>
                             <constraint firstAttribute="bottom" secondItem="rQ6-5o-Ooj" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="d90-YY-HkO"/>
@@ -75,6 +85,9 @@
                             <constraint firstItem="rQ6-5o-Ooj" firstAttribute="leading" secondItem="Rwq-Wa-5Xi" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="r37-K0-Ww5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="PictureLabel" destination="6UM-92-iAD" id="Iee-q5-QdQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
@@ -88,6 +101,7 @@
                 <relationship kind="action" name="LoadSlamFromFilename:"/>
                 <relationship kind="action" name="SameSlamButtonPressed:"/>
                 <relationship kind="action" name="SlamInitButtonPressed:"/>
+                <relationship kind="outlet" name="PictureLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
